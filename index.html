@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width">
+    <title>Hebrew Alphabet Audio Speller</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+		p {
+			/* Do not show too many characters on one line: */
+			max-width: 40em;
+			/* Align text to the center horizontally. */
+			text-align: center;
+			margin: 0 auto;
+			
+		}
+
+		.letterImage {
+			width: 1em;
+			height: 1em;
+			padding-top: 0.6em;
+			padding-right: 0.4em;
+			padding-bottom: -0.2em;
+		}
+
+        .plainbutton {
+            font-size: 3em;
+            margin: 0.4em;
+            padding: 0.2em;
+            border-radius: 0.3em;
+            background-color: whitesmoke;
+            border-color: gray;
+            border-width: 0.12em;
+        }
+
+        @keyframes highlightOn {
+			0% {
+				background-color: #3f51b5;
+				border-width: 0.32em;
+			}
+			50% {
+				border-width: 0.1em;
+
+				background-color: white;
+				rotate: -6deg;
+				margin-right: 0.2em;
+				font-size: 4em;
+				padding: 0.2em;
+			}
+			100% {
+				background-color: #3f51b5;
+				border-width: 0.32em;
+			}
+		}
+
+		
+		@keyframes highlightWrong {
+			0% {
+				background-color: #3f51b5;
+				border-width: 0.32em;
+			}
+			25% {
+				border-width: 0.1em;
+
+				background-color: red;
+				rotate: 6deg;
+				margin-right: 0.2em;
+				font-size: 4em;
+				padding: 0.2em;
+			}
+			50% {
+				border-width: 0.1em;
+
+				background-color: white;
+				rotate: -6deg;
+				margin-right: 0.2em;
+				font-size: 4em;
+				padding: 0.2em;
+			}
+			75% {
+				border-width: 0.1em;
+
+				background-color: red;
+				rotate: 6deg;
+				margin-right: 0.2em;
+				font-size: 4em;
+				padding: 0.2em;
+			}
+			100% {
+				background-color: #3f51b5;
+				border-width: 0.32em;
+			}
+		}
+
+		@keyframes highlightCorrect {
+			0% {
+				background-color: #3f51b5;
+				border-width: 0.32em;
+			}
+			25% {
+				border-width: 0.1em;
+
+				background-color: white;
+				font-size: 4em;
+
+			}
+			50% {
+				border-width: 0.1em;
+
+				
+				background-color: white;
+				font-size: 4em;
+				box-shadow: -18px 18px green;
+			}
+			75% {
+				border-width: 0.1em;
+
+				background-color: white;
+				font-size: 4em;
+				padding: 0.2em;
+			}
+			100% {
+				background-color: hsl(231, 48%, 48%);
+				border-width: 0.32em;
+			}
+		}
+
+		
+
+		.highlighted {
+			border-color: blue;
+			animation-duration: 1s;
+			animation-name: highlightOn;
+			animation-iteration-count: 1;
+			animation-direction: alternate;
+		}
+
+
+		.highlightedAsWrong {
+			border-color: blue;
+			animation-duration: 1s;
+			animation-name: highlightWrong;
+			animation-iteration-count: 1;
+			animation-direction: alternate;
+		}
+
+		.highlightedAsCorrect {
+			border-color: blue;
+			animation-duration: 1s;
+			animation-name: highlightCorrect;
+			animation-iteration-count: 1;
+			animation-direction: alternate;
+		}
+
+
+		button
+		{	
+			font-family: inherit;
+		    font-size: 32pt;
+			margin: 0.3em;
+			padding: 0.6em;
+			border-radius: 0.9em;
+            border-top-left-radius: 1.0em;
+            border-top-right-radius: 0.0em;
+			background-color: #3f51b5;
+			border-color: gray;
+			border-width: 0.32em;
+		}
+
+
+			/* Round the text area, where the line ends. In a right to left language
+			 this border rounding is at the top-left */
+			textarea {
+				font-size: 3em;
+
+				/* Dear future programmer,
+				  Switch the values of border-top-left-radius
+				  and border-top-right-radius when modifying this
+				  code to write text for a language that flows in a different direction.
+				*/
+				border-top-left-radius: 1.0em;
+				border-top-right-radius: 0.0em;
+
+				top: 0px;
+				height: 33vh
+			}
+
+        h2 {
+            margin-top: 1.5em;
+            margin-bottom: 0.0em;
+            text-align: center;
+        }
+
+		.primaryMessage {
+			font-size: 20px;
+			text-align: center;	
+		}
+		
+		.quizToggleOff {
+		    font-size: 32pt;
+			margin: 0.3em;
+			padding: 0.6em;
+			border-radius: 0.9em;
+            border-top-right-radius: 1.0em;
+            border-top-left-radius: 0.0em;
+			background-color: white;
+			border-color: gray;
+			border-width: 0.32em;			
+		}
+
+		.quizToggleOn {
+		    font-size: 32pt;
+			margin: 0.3em;
+			padding: 0.6em;
+			border-radius: 0.9em;
+            border-top-right-radius: 1.0em;
+            border-top-left-radius: 0.0em;
+			background-color: gray;
+			border-color: gray;
+			border-width: 0.32em;			
+		}
+
+		.playSoundAgainButton {
+			border-radius: 0.1em;
+			border-color: yellow;
+			box-shadow: inset;
+		}
+
+		
+        /* Some classes for style, for those programmers who want
+        a more specific style:
+        .punctuation {}
+        .alphabet {}
+        .whitespace {}
+        .combinations {}
+        .finals {}
+        */
+
+		/* Resume styles */
+		.resume {
+			border: blue 10px 2px;
+		}
+
+		.time {
+			text-align: right;
+		}
+		
+		.place {
+			text-align: left;
+		}
+
+	</style>
+
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script>
+		let appState = { 
+			quizMode: false, // whether there is a quiz running.
+			currentQuizPromptAudioId: null, // what the correct answer is (ID of the audio)
+			mostRecentlyTyped: "",
+			correctCount: 0,
+			incorrectCount: 0,
+			quizStatisticsRaw: [],
+			quizStatistics: [],
+			showingCursive: false,
+			showingPrinted: true,
+		};
+		
+        var aboutThisApplication = "This is for causing the computer to speak out the names of the Hebrew letters. Make sure your sound is on. Information about the software developer is available at the following web address: https://www.github.com/elsanussi-s-mneina";
+
+        // A variable that defines the Hebrew alphabet.
+        // Each character is defined as the 
+        // text that it will write in the text box,
+        // the buttonLabel which is the text that is written on the button
+        // and the description, which is what a screenreader would describe
+        // the button as.
+        // Note to self we are missing the audio for vet, kaf, kaf sofit, peh and sin. We have the audio for bet, khaf, khaf sofit, feh, and shin.
+        // That is why there are some missing buttons.
+        var alphabet = [
+            { text: "\u05D0", buttonLabel: "\u05D0 Alef", shortButtonLabel: "\u05D0", description: "Alef", oggAudioFile: "audio/05D0.ogg", mp3AudioFile: "audio/05D0.mp3", audioId: "alefAudio", buttonId: "alefButton",
+			cursivePicture: "picture/cursive/alef.png"
+		
+		},
+            { text: "\u05D1\u05BC", buttonLabel: "\u05D1\u05BC Bet", shortButtonLabel: "\u05D1\u05BC",  description: "Bet", oggAudioFile: "audio/05D1.ogg", mp3AudioFile: "audio/05D1.mp3", audioId: "betAudio", buttonId: "betButton",
+			cursivePicture: "picture/cursive/bet_ns1.png"
+		},
+            { text: "\u05D1", buttonLabel: "\u05D1 Vet", shortButtonLabel: "\u05D1",  description: "Vet", oggAudioFile: "audio/05D1_sp.ogg", mp3AudioFile: "audio/05D1_sp.mp3", audioId: "vetAudio", buttonId: "vetButton",
+			cursivePicture: "picture/cursive/bet2.png"		
+		 },
+			{ text: "\u05D2", buttonLabel: "\u05D2 Gimel", shortButtonLabel: "\u05D2",  description: "Gimel", oggAudioFile: "audio/05D2.ogg", mp3AudioFile: "audio/05D2.mp3", audioId: "gimelAudio", buttonId: "gimelButton",
+		cursivePicture: "picture/cursive/gimel1.png" },
+            { text: "\u05D3", buttonLabel: "\u05D3 Dalet", shortButtonLabel: "\u05D3",  description: "Dalet", oggAudioFile: "audio/05D3.ogg", mp3AudioFile: "audio/05D3.mp3", audioId: "daletAudio", buttonId: "daletButton",
+			cursivePicture: "picture/cursive/dalet1.png"
+		},
+            { text: "\u05D4", buttonLabel: "\u05D4 He", shortButtonLabel: "\u05D4", description: "Hey", oggAudioFile: "audio/05D4.ogg", mp3AudioFile: "audio/05D4.mp3", audioId: "heyAudio", buttonId: "heyButton",
+			cursivePicture: "picture/cursive/heh1.png"
+		},
+            { text: "\u05D5", buttonLabel: "\u05D5 Vav", shortButtonLabel: "\u05D5", description: "vav", oggAudioFile: "audio/05D5.ogg", mp3AudioFile: "audio/05D5.mp3", audioId: "vavAudio", buttonId: "vavButton",
+			cursivePicture: "picture/cursive/vav1.png"
+ },
+            { text: "\u05D6", buttonLabel: "\u05D6 Zayin", shortButtonLabel: "\u05D6",  description: "zayen", oggAudioFile: "audio/05D6.ogg", mp3AudioFile: "audio/05D6.mp3", audioId: "zayenAudio", buttonId: "zayenButton", cursivePicture: "picture/cursive/zayin1.png"
+ },
+            { text: "\u05D7", buttonLabel: "\u05D7 Chet", shortButtonLabel: "\u05D7",  description: "khet", oggAudioFile: "audio/05D7.ogg", mp3AudioFile: "audio/05D7.mp3", audioId: "khetAudio", buttonId: "khetButton", cursivePicture: "picture/cursive/chet1.png" },
+            { text: "\u05D8", buttonLabel: "\u05D8 Tet", shortButtonLabel: "\u05D8",  description: "tet", oggAudioFile: "audio/05D8.ogg", mp3AudioFile: "audio/05D8.mp3", audioId: "tetAudio", buttonId: "tetButton", cursivePicture: "picture/cursive/tet1.png" },
+            { text: "\u05D9", buttonLabel: "\u05D9 Yod", shortButtonLabel: "\u05D9", description: "yod", oggAudioFile: "audio/05D9.ogg", mp3AudioFile: "audio/05D9.mp3", audioId: "yodAudio", buttonId: "yodButton", cursivePicture: "picture/cursive/yod1.png" },
+            { text: "\u05DB\u05BC", buttonLabel: "\u05DB\u05BC Kaf", shortButtonLabel: "\u05DB\u05BC", description: "kaf", oggAudioFile: "audio/05DB_ns.ogg", mp3AudioFile: "audio/05DB_ns.mp3", audioId: "kafAudio", buttonId: "kafButton", cursivePicture: "picture/cursive/kaf_ns1.png" },
+
+			{ text: "\u05DB", buttonLabel: "\u05DB Khaf", shortButtonLabel: "\u05DB", description: "khaf", oggAudioFile: "audio/05DB.ogg", mp3AudioFile: "audio/05DB.mp3", audioId: "khafAudio", buttonId: "khafButton", cursivePicture: "picture/cursive/kaf1.png" },
+            { text: "\u05DC", buttonLabel: "\u05DC Lamed", shortButtonLabel: "\u05DC", description: "lamed", oggAudioFile: "audio/05DC.ogg", mp3AudioFile: "audio/05DC.mp3", audioId: "lamedAudio", buttonId: "lamedButton", cursivePicture: "picture/cursive/lamed1.png" },
+            { text: "\u05DE", buttonLabel: "\u05DE Mem", shortButtonLabel: "\u05DE", description: "mem", oggAudioFile: "audio/05DE.ogg", mp3AudioFile: "audio/05DE.mp3", audioId: "memAudio", buttonId: "memButton", cursivePicture: "picture/cursive/mem1.png" },
+            { text: "\u05E0", buttonLabel: "\u05E0 Nun", shortButtonLabel: "\u05E0", description: "nun", oggAudioFile: "audio/05E0.ogg", mp3AudioFile: "audio/05E0.mp3", audioId: "nunAudio", buttonId: "nunButton", cursivePicture: "picture/cursive/nun1.png" },
+            { text: "\u05E1", buttonLabel: "\u05E1 Samekh", shortButtonLabel: "\u05E1", description: "samekh", oggAudioFile: "audio/05E1.ogg", mp3AudioFile: "audio/05E1.mp3", audioId: "samekhAudio", buttonId: "samekhButton", cursivePicture: "picture/cursive/samekh1.png" }, 
+            // I chose to spell Samekh with "kh here" even though the website, I am basing
+            // it on is different.
+            
+            { text: "\u05E2", buttonLabel: "\u05E2 Ayin", shortButtonLabel: "\u05E2", description: "ayin", oggAudioFile: "audio/05E2.ogg", mp3AudioFile: "audio/05E2.mp3", audioId: "ayinAudio", buttonId: "ayinButton", cursivePicture: "picture/cursive/ayin1.png" },
+            { text: "\u05E4\u05BC", buttonLabel: "\u05E4\u05BC Peh", shortButtonLabel: "\u05E4\u05BC", description: "pey", oggAudioFile: "audio/05E4_ns.ogg", mp3AudioFile: "audio/05E4_ns.mp3", audioId: "pehAudio", buttonId: "pehButton", cursivePicture: "picture/cursive/peh_ns.png" },
+			{ text: "\u05E4", buttonLabel: "\u05E4 Feh", shortButtonLabel: "\u05E4", description: "fey", oggAudioFile: "audio/05E4.ogg", mp3AudioFile: "audio/05E4.mp3", audioId: "fehAudio", buttonId: "fehButton", cursivePicture: "picture/cursive/peh1.png" },
+            { text: "\u05E6", buttonfLabel: "\u05E6 Tsadeh", shortButtonLabel: "\u05E6", description: "tsadi", oggAudioFile: "audio/05E6.ogg", mp3AudioFile: "audio/05E6.mp3", audioId: "tsadehAudio", buttonId: "tsadehButton", cursivePicture: "picture/cursive/tsadeh1.png" },
+            { text: "\u05E7", buttonLabel: "\u05E7 Qof", shortButtonLabel: "\u05E7", description: "kuf", oggAudioFile: "audio/05E7.ogg", mp3AudioFile: "audio/05E7.mp3", audioId: "qofAudio", buttonId: "qofButton", cursivePicture: "picture/cursive/qof1.png" },
+            { text: "\u05E8", buttonLabel: "\u05E8 Resh", shortButtonLabel: "\u05E8", description: "resh", oggAudioFile: "audio/05E8.ogg", mp3AudioFile: "audio/05E8.mp3", audioId: "reshAudio", buttonId: "reshButton", cursivePicture: "picture/cursive/resh1.png" },
+            { text: "\u05E9\u05C1", buttonLabel: "\u05E9\u05C1 Shin", shortButtonLabel: "\u05E9\u05C1", description: "shin", oggAudioFile: "audio/05E9.ogg", mp3AudioFile: "audio/05E9.mp3", audioId: "shinAudio", buttonId: "shinButton", cursivePicture: "picture/cursive/shin1.png" },
+            { text: "\u05E9\u05C1", buttonLabel: "\u05E9\u05C1 sin", shortButtonLabel: "\u05E9\u05C2", description: "sin", oggAudioFile: "audio/05E9_l.ogg", mp3AudioFile: "audio/05E9_l.mp3", audioId: "sinAudio", buttonId: "sinButton", cursivePicture: "picture/cursive/shin1.png" },
+
+			{ text: "\u05EA\u05BC", buttonLabel: "\u05EA Tav", shortButtonLabel: "\u05EA", description: "tav", oggAudioFile: "audio/05EA.ogg", mp3AudioFile: "audio/05EA.mp3", audioId: "tavAudio", buttonId: "tavButton", cursivePicture: "picture/cursive/tav1.png" },
+        ];
+        
+        var finalCharacters = [
+            { text: "\u05DA", buttonLabel: "\u05DA Khaf Sofit", shortButtonLabel: "\u05DA", description: "khaf sofit", oggAudioFile: "audio/05DA.ogg", mp3AudioFile: "audio/05DA.mp3", audioId: "khafSofitAudio", buttonId: "khafSofitButton", cursivePicture: "picture/cursive/kafsofit1.png"  },
+            { text: "\u05DD", buttonLabel: "\u05DD Mem Sofit", shortButtonLabel: "\u05DD", description: "mem sofit", oggAudioFile: "audio/05DD.ogg", mp3AudioFile: "audio/05DD.mp3", audioId: "memSofitAudio", buttonId: "memSofitButton", cursivePicture: "picture/cursive/memsofit1.png"  },
+            { text: "\u05DF", buttonLabel: "\u05DF Nun Sofit", shortButtonLabel: "\u05DF", description: "nun sofit", oggAudioFile: "audio/05DF.ogg", mp3AudioFile: "audio/05DF.mp3", audioId: "nunSofitAudio", buttonId: "nunSofitButton", cursivePicture: "picture/cursive/nunsofit1.png"  },
+            { text: "\u05E3", buttonLabel: "\u05E3 Feh Sofit", shortButtonLabel: "\u05E3", description: "feh sofit", oggAudioFile: "audio/05E3.ogg", mp3AudioFile: "audio/05E3.mp3", audioId: "fehSofitAudio", buttonId: "fehSofitButton", cursivePicture: "picture/cursive/pehsofit.png"  },
+            { text: "\u05E5", buttonLabel: "\u05E5 Tsadeh Sofit", shortButtonLabel: "\u05E5", description: "tsadi sofit", oggAudioFile: "audio/05E5.ogg", mp3AudioFile: "audio/05E5.mp3", audioId: "tsadehSofitAudio", buttonId: "tsadehSofitButton", cursivePicture: "picture/cursive/tsadehsofit1.png"  },
+        ];
+        
+
+		let futureSampleQuizStatisticsElement = {perLetter: [{audioId: "tavAudio", correctCount: 4, incorrectCount: 7, totalTimesAsked: 2, confusedWith: [{audioId: "lamedAudio", numberOfTimes: 2}]}]};
+		let sampleQuizStatisticsElement = {correctResponseCount: 0, askCount: 0};
+
+		function audioIdHasAudioToPlay(audioId) {
+			var audioElement = document.getElementById(audioId);
+			return audioElement.readyState >= 2; // has enough audio to play
+		}
+		
+		// dispatch actions:
+		// These determine what state changes are possible
+		// on the appication state.
+		const ASK_NEXT_QUESTION = "askNextQuestion";
+		const ASK_NEXT_QUESTION_AFTER_DELAY = "askNextQuestionAfterDelay";
+		const TOGGLE_QUIZ = "toggleQuiz";
+		const SELECT_LETTER = "selectLetter";
+		const SHOW_ABOUT_THE_PROGRAMMER = "aboutTheProgrammer";
+
+		// The following function returns a new appState.
+		// and a list of actions
+		function reducer(dispatchPayload, draftAppState)
+		{
+			console.log(dispatchPayload);
+			console.log(draftAppState);
+			if (dispatchPayload.action === ASK_NEXT_QUESTION) {
+				askNextQuestion();	
+			} else if (dispatchPayload.action === ASK_NEXT_QUESTION_AFTER_DELAY) {
+				console.log("Asking next question after delay");
+				setTimeout(askNextQuestion, 2000);
+			} else if (dispatchPayload.action === TOGGLE_QUIZ) {
+				onClickToggleQuiz();
+			} else if (dispatchPayload.action === SELECT_LETTER) {
+			} else if (dispatchPayload.action === SHOW_ABOUT_THE_PROGRAMMER) {
+				let resumeRoot = document.getElementById("resumeTargetPanel");
+				resumeRoot.appendChild(createResume());
+				let buttonToHide = document.getElementById("aboutProgrammerButton");
+				buttonToHide.style.visibility = "collapse";
+			} else {
+				console.warn("Action not recognized:", dispatchPayload);	
+			}
+			
+			return {appState: draftAppState, actions: []};
+		}
+		
+		// The dispatch payload has the following
+		// property action: string
+		function dispatchAction(dispatchPayload) {
+			let reducerResult = reducer(dispatchPayload, appState);
+			appState = reducerResult.appState;
+		}
+
+		function getTextFromAudioId(targetAudioId)
+		{
+			let alphabetFiltered = alphabet.filter(x => x.audioId == targetAudioId);
+			if (alphabetFiltered.length > 0)
+			{
+				return alphabetFiltered[0].shortButtonLabel;
+			}
+
+			let finalCharactersFiltered = finalCharacters.filter(x => x.audioId == targetAudioId);
+			if (finalCharactersFiltered.length > 0)
+			{
+				return finalCharactersFiltered[0].shortButtonLabel;
+			}
+
+			return null;
+		}
+		
+		function askNextQuestion() {
+			console.log("Asking question...");
+			
+			let audioIdToPlay = chooseRandomAudioIdOfLetter();
+			while (!audioIdHasAudioToPlay(audioIdToPlay)) {
+				console.log("Did not have enough audio to play" + audioIdToPlay);
+				audioIdToPlay = chooseRandomAudioIdOfLetterIncludingFinals();
+			}
+			appState.currentQuizPromptAudioId = audioIdToPlay;
+			appState.currentQuizPromptTargetText = getTextFromAudioId(audioIdToPlay);
+			var audioElement = document.getElementById(audioIdToPlay);
+			audioElement.play();
+			console.log("Played audio of:", audioIdToPlay);
+			console.log("quiz Statistics:", appState.quizStatistics);
+			appState.quizStatistics[0].perLetter[audioIdToPlay].askCount++;
+
+			
+			let audioButtonToSpeak = document.getElementById("playSoundAgainButton");
+			audioButtonToSpeak.className = "highlighted playSoundAgainButton";
+			// Turn off highlight after animation completes:
+			setTimeout(function() {audioButtonToSpeak.className = "playSoundAgainButton";}, 2400);
+		}
+		
+		function playSoundOfCurrentQuestion() {
+			var audioElement = document.getElementById(appState.currentQuizPromptAudioId);
+			audioElement.play();
+			console.log("Played audio of:", audioElement.id);
+
+			let audioButtonToSpeak = document.getElementById("playSoundAgainButton");
+			audioButtonToSpeak.className = "highlighted playSoundAgainButton";
+			// Turn off highlight after animation completes:
+			setTimeout(function() {audioButtonToSpeak.className = "playSoundAgainButton";}, 2400);
+		}
+
+		function getShortButtonLabelByAudioId(audioIdWanted, fallbackValue) {
+			let matches = alphabet.concat(finalCharacters).filter(x => x.audioId == audioIdWanted);
+			if (matches.length > 0) {
+				return matches[0].shortButtonLabel;
+			} else {
+				return fallbackValue;
+			}
+		}
+        // This function returns a function that speaks
+        // audio
+        function onClickButtonForSpeaking(audioIdToSpeak, sourceButtonId) {
+            function enclosedFunction() {
+
+				appState.mostRecentlyTyped += getShortButtonLabelByAudioId(audioIdToSpeak, "");
+				console.log("most recently typed", appState.mostRecentlyTyped);
+				if (appState.mostRecentlyTyped.endsWith("\u05D0\u05DC\u05E1\u05E0\u05D5\u05E1\u05D9")) {
+					console.log("unlock");
+					setMainMessage("Programmed by Elsanussi Mneina");
+					root.appendChild(createResume());
+				}
+				if (appState.quizMode) {
+					if (audioIdToSpeak === appState.currentQuizPromptAudioId) {
+						console.log("Correct");
+						setMainMessage("Your choice was correct.");
+						appState.correctCount += 1;
+						let buttonToSpeak = document.getElementById(sourceButtonId);
+
+						// Set play sound again to show same character
+						let playSoundAgainButton = document.getElementById("playSoundAgainButton");
+						if (appState.currentQuizPromptAudioId)
+						{
+							playSoundAgainButton.innerText = appState.currentQuizPromptTargetText;
+							setTimeout(function() {playSoundAgainButton.innerText = "?";}, 1000);
+						}
+						appState.quizStatisticsRaw[0].perLetter.push({audioId: appState.currentQuizPromptAudioId, correct: true});
+						appState.quizStatistics[0].perLetter[appState.currentQuizPromptAudioId].correctResponseCount++;
+						
+						buttonToSpeak.className = "highlightedAsCorrect";
+						dispatchAction({action: ASK_NEXT_QUESTION_AFTER_DELAY});
+						// Turn off highlight after animation completes:
+						setTimeout(function() {buttonToSpeak.className = "";}, 2400);
+					} else {
+						console.log("Incorrect");
+						setMainMessage("Your choice was not correct!");
+						appState.incorrectCount += 1;
+						appState.quizStatisticsRaw[0].perLetter.push({audioId: appState.currentQuizPromptAudioId, correct: false, confusedWith: audioIdToSpeak});
+						appState.quizStatistics[0].perLetter[appState.currentQuizPromptAudioId].incorrectResponseCount++;
+						let buttonToSpeak = document.getElementById(sourceButtonId);
+						buttonToSpeak.className = "highlightedAsWrong";
+						// Turn off highlight after animation completes:
+						setTimeout(function() {buttonToSpeak.className = "";}, 2400);
+					}
+
+				} else {
+					var audioElement = document.getElementById(audioIdToSpeak);
+					audioElement.play();
+
+					var buttonToSpeak = document.getElementById(sourceButtonId);
+					buttonToSpeak.className = "highlighted";
+					// Turn off highlight after animation completes:
+					setTimeout(function() {buttonToSpeak.className = "";}, 2400);
+				}
+
+            }
+            return enclosedFunction;
+        }
+
+		// The following function is copied from devdocs.io (documentation website)
+		function getRandomInt(min, max) {
+		  min = Math.ceil(min);
+		  max = Math.floor(max);
+		  return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
+		}
+
+
+		
+		function chooseRandomAudioIdOfLetter() {
+			let randomIndex = getRandomInt(0, alphabet.length);
+			return alphabet[randomIndex].audioId;
+		}
+
+		function chooseRandomAudioIdOfLetterIncludingFinals() {
+			let randomIndex = getRandomInt(0, alphabet.length + finalCharacters.length);
+			if (randomIndex < alphabet.length) {
+				return alphabet[randomIndex].audioId;
+			}
+			else {
+				return finalCharacters[randomIndex - alphabet.length].audioId;
+			}
+		}
+
+        function createButtonForSpeaking(letter) {
+			return createImageButtonForSpeaking(letter.text, letter.shortButtonLabel, letter.description, letter.audioId, letter.buttonId, letter.cursivePicture);
+        }
+
+        function createLabelledButtonForSpeaking(textToWrite, buttonLabel, description, audioId, buttonId) {
+            var aButton = document.createElement("button");
+	    	aButton.id = buttonId;
+            var textNode = document.createTextNode(buttonLabel);
+            aButton.appendChild(textNode);
+            aButton.ariaLabel = description;
+            aButton.addEventListener("click", onClickButtonForSpeaking(audioId, buttonId));
+            return aButton;
+        }
+
+		function createImageButtonForSpeaking(textToWrite, buttonLabel, description, audioId, buttonId, imageSource) {
+            var aButton = document.createElement("button");
+	    	aButton.id = buttonId;
+
+			let printSpan = document.createElement("span");
+			printSpan.className = "letterPrint"
+            let textNode = document.createTextNode(buttonLabel);
+			printSpan.appendChild(textNode);
+			let imageElement = document.createElement("img");
+			imageElement.src = imageSource;
+			imageElement.className = "letterImage";
+			if (!appState.showingCursive)
+			{
+				imageElement.setAttribute("style", "visibility: collapse; display: none");
+			}
+
+			let buttonInnerContainer = document.createElement("div");
+			buttonInnerContainer.appendChild(printSpan);
+			buttonInnerContainer.appendChild(imageElement);
+			
+			aButton.appendChild(buttonInnerContainer);
+            aButton.ariaLabel = description;
+            aButton.addEventListener("click", onClickButtonForSpeaking(audioId, buttonId));
+            return aButton;
+        }
+
+
+		function populateQuizStatisticsForStartOfQuiz() {
+			let result = {};
+			for (let i = 0; i < alphabet.length; i++) {
+				const currentAudioId = alphabet[i].audioId;
+				result[currentAudioId] = {correctResponseCount: 0, incorrectResponseCount: 0, askCount: 0};
+			}
+			return result;
+		}
+
+		function hideAllVisibleLetterImages() {
+			let letterImageElements = document.getElementsByClassName("letterImage");
+			for (let i = 0; i < letterImageElements.length; i++) {
+				letterImageElements[i].setAttribute("style", "visibility: collapse; display: none;");
+			}
+		}
+
+		function showAllLetterImages() {
+			let letterImageElements = document.getElementsByClassName("letterImage");
+			for (let i = 0; i < letterImageElements.length; i++) {
+				letterImageElements[i].setAttribute("style", "visibility: visible");
+			}
+		}
+
+		function onToggleShowCursiveCheckbox(theEvent) {
+			if (appState.showingCursive) {
+				hideAllVisibleLetterImages();
+			} else {
+				showAllLetterImages();
+			}
+			appState.showingCursive = !appState.showingCursive;
+		}
+
+		function createToggleShowCursiveCheckbox() {
+			let checkboxPanel = document.createElement("div");
+			checkboxPanel.dir = "ltr";
+			let checkbox = document.createElement("input");
+			checkbox.id = "toggleShowCursiveCheckbox";
+			checkbox.type = "checkbox";
+			checkbox.name = "toggleShowCursive";
+			checkbox.value = true;
+			let checkboxLabel = document.createElement("label");
+			checkboxLabel.htmlFor = checkbox.name;
+			checkboxLabel.appendChild(document.createTextNode("Show cursive forms of letters"));
+			checkbox.checked = appState.showingCursive;
+			checkbox.addEventListener("change", onToggleShowCursiveCheckbox);
+			checkboxPanel.appendChild(checkbox);
+			checkboxPanel.appendChild(checkboxLabel);
+			return checkboxPanel;
+		}
+
+		function hideAllVisibleLetterPrintedForms() {
+			let letterPrintedElements = document.getElementsByClassName("letterPrint");
+			for (let i = 0; i < letterPrintedElements.length; i++) {
+				letterPrintedElements[i].setAttribute("style", "visibility: collapse; display: none;");
+			}
+		}
+
+		function showAllLetterPrintedForms() {
+			let letterPrintedElements = document.getElementsByClassName("letterPrint");
+			for (let i = 0; i < letterPrintedElements.length; i++) {
+				letterPrintedElements[i].setAttribute("style", "visibility: visible");
+			}
+		}
+
+
+		function onToggleShowPrintedCheckbox(theEvent) {
+			// We must show something at least.
+			// Do not hide printed forms if there are no
+			// cursive forms to show
+			if (!appState.showingCursive) {
+				theEvent.preventDefault();
+				return;
+			}
+
+			if (appState.showingPrinted) {
+				hideAllVisibleLetterPrintedForms();
+			} else {
+				showAllLetterPrintedForms();
+			}
+			appState.showingPrinted = !appState.showingPrinted;
+		}
+
+		function onToggleLetterForms(theEvent) {
+			toggleLetterFormButton = document.getElementById("toggleLetterFormButton");
+			
+			if (appState.showingPrinted && !appState.showingCursive) {
+				appState.showingCursive = true;
+				appState.showingPrinted = false;
+			} else if (!appState.showingPrinted && appState.showingCursive) {
+				appState.showingCursive = true;
+				appState.showingPrinted = true;
+			} else {
+				appState.showingCursive = false;
+				appState.showingPrinted = true;
+			}	
+
+			if (appState.showingPrinted) {
+				showAllLetterPrintedForms();
+			} else {
+				hideAllVisibleLetterPrintedForms();
+			}
+
+			if (appState.showingCursive) {
+				showAllLetterImages();
+			} else {
+				hideAllVisibleLetterImages();
+			}
+
+			toggleLetterFormButton.innerText = toggleFormButtonInnerText();
+		}
+
+
+		function createToggleShowPrintedCheckbox() {
+			let checkboxPanel = document.createElement("div");
+			checkboxPanel.dir = "ltr";
+			let checkbox = document.createElement("input");
+			checkbox.id = "toggleShowPrintedCheckbox";
+			checkbox.type = "checkbox";
+			checkbox.name = "toggleShowPrinted";
+			checkbox.value = true;
+			let checkboxLabel = document.createElement("label");
+			checkboxLabel.htmlFor = checkbox.name;
+			checkboxLabel.appendChild(document.createTextNode("Show printed forms of letters"));
+			checkbox.checked = appState.showingPrinted;
+
+			checkbox.addEventListener("change", onToggleShowPrintedCheckbox);
+
+			checkboxPanel.appendChild(checkbox);
+			checkboxPanel.appendChild(checkboxLabel);
+			return checkboxPanel;
+		}
+
+		function toggleFormButtonInnerText() {
+			let buttonText = "";
+			if (appState.showingPrinted && !appState.showingCursive) {
+				buttonText = "Showing Printed Forms";
+			} else if (!appState.showingPrinted && appState.showingCursive) {
+				buttonText = "Showing Cursive Forms";
+			} else {
+				buttonText = "Showing Cursive and Printed Forms";
+			}	
+			return buttonText;
+		}
+
+		function createLetterFormToggle() {
+			let togglePanel = document.createElement("span");
+			togglePanel.dir = "ltr";
+			let button = document.createElement("button");
+			button.id = "toggleLetterFormButton";
+
+			let buttonText = toggleFormButtonInnerText();
+			button.appendChild(document.createTextNode(buttonText));
+
+			button.addEventListener("click", onToggleLetterForms);
+
+			togglePanel.appendChild(button);
+			return togglePanel;
+		}
+
+
+		function onQuizModeChange() {
+			if (appState.quizMode === true) {
+				setMainMessage("Quiz started, listen for audio");
+				hideAllVisibleLetterImages();
+				appState.quizStatistics.push({perLetter: populateQuizStatisticsForStartOfQuiz()});
+				appState.quizStatisticsRaw.push({perLetter: []});
+				console.log("App State:");
+				console.log(appState);
+				askNextQuestion();
+				document.getElementById("toggleQuizButton").className = "quizToggleOn";
+			} else {
+				showAllLetterImages();
+				setMainMessage("You chose " + appState.correctCount + " time(s) correctly, and " + appState.incorrectCount + " time(s) incorrectly in the previous quiz.");	
+				document.getElementById("toggleQuizButton").className = "quizToggleOff";
+			}
+		}
+		
+		function onClickToggleQuiz() {
+			let quizButton = document.getElementById("toggleQuizButton");
+			if (appState.quizMode === false) {
+				quizButton.innerText = "Stop Quiz";
+				quizButton.ariaLabel = "Button to Stop Quiz";
+				playSoundAgainButton.style.display = "block";
+			} else {
+				quizButton.innerText = "Start Quiz";
+				quizButton.ariaLabel = "Button to Start Quiz";		
+				playSoundAgainButton.style.display = "none";
+			}
+			appState.quizMode = !appState.quizMode;
+			onQuizModeChange();
+		}
+		
+		function createToggleQuizButton() {
+			let quizButton = document.createElement("button");
+			quizButton.dir = "ltr";
+			quizButton.id = "toggleQuizButton";
+			quizButton.className = "quizToggleOff";
+			let quizText = "Start Quiz";
+			let textNode = document.createTextNode(quizText);
+			quizButton.appendChild(textNode);
+			quizButton.ariaLabel = "Button to Start Quiz";
+			quizButton.addEventListener("click", function() {dispatchAction({action: TOGGLE_QUIZ})});
+			return quizButton;
+		}
+
+		function createAboutTheComputerProgrammerButton() {
+			let aboutButton = document.createElement("button");
+			aboutButton.dir = "ltr";
+			aboutButton.id = "aboutProgrammerButton";
+			aboutButton.className = "aboutProgrammerButton";
+			let aboutButtonText = "Who programmed this?";
+			let textNode = document.createTextNode(aboutButtonText);
+			aboutButton.appendChild(textNode);
+			aboutButton.ariaLabel = "Button to Show Programmer Resume/CV";
+			aboutButton.addEventListener("click", function() {dispatchAction({action: SHOW_ABOUT_THE_PROGRAMMER})});
+			return aboutButton;
+		}
+
+
+		function onClickPlaySoundAgain() {
+			if (appState.quizMode === true) {
+				playSoundOfCurrentQuestion();
+			}
+		}
+
+		function createPlaySoundAgainButton() {
+			let playSoundAgainButton = document.createElement("button");
+			playSoundAgainButton.id = "playSoundAgainButton";
+			playSoundAgainButton.className = "playSoundAgainButton";
+			let quizText = "?";
+			let textNode = document.createTextNode(quizText);
+			playSoundAgainButton.appendChild(textNode);
+			playSoundAgainButton.ariaLabel = "Button to Play sound of question again";
+			playSoundAgainButton.addEventListener("click", onClickPlaySoundAgain);
+
+			// The play sound again button should start off as hidden.
+			// It only is useful when a quiz is running.
+			playSoundAgainButton.style.display = "none";
+			return playSoundAgainButton;
+			
+		}
+		
+		
+        // Create a heading of a particular level.
+        // This first argument is a number such as "1", "2", all the way to "6".
+        // The second argument is the text to show in the heading.
+        function createHeading(level, textToShow) {
+            var element = document.createElement("h" + level);
+            var textNode = document.createTextNode(textToShow);
+            element.appendChild(textNode);
+            return element;
+        }
+
+	function createHeading_whenLevelIsOne_tagIsH1() {
+		let expected = document.createElement("h1");
+		let actual = createHeading(1, "hi there");
+		
+		if (actual.nodeName === "H1") {
+			return [true, "."];
+		} else {
+			return [false, "createHeading function did not return an HTML Tag H1 when level was set to 1."];
+		}
+	}
+
+	function createHeading_whenLevelIsSix_tagIsH6() {
+		let expected = document.createElement("h6");
+		let actual = createHeading(6, "hello there");
+		
+		if (actual.nodeName === "H6") {
+			return [true, "."];
+		} else {
+			return [false, "createHeading function did not return an HTML Tag H6 when level was set to 6."];
+		}
+	}
+
+	
+
+	// a List of unit test functions.
+	// Each function returns a tuple of type (boolean, string).
+	// Each function has no parameters.
+	let unitTests = [createHeading_whenLevelIsOne_tagIsH1, createHeading_whenLevelIsSix_tagIsH6];
+
+	function runUnitTests() {
+		let passCount = 0;
+		let failCount = 0;
+		let message = '';
+		for (let i = 0; i < unitTests.length; i += 1) {
+			const currentUnitTest = unitTests[i];
+			const [didTestPass, messageFromTest] = currentUnitTest();
+
+			message = message + " " + messageFromTest;
+
+			if (didTestPass) {
+				passCount += 1;
+			} else {
+				failCount += 1;
+			}
+		}
+		console.log(message);
+		console.log("Number of passed tests:", passCount);
+		console.log("Number of failed tests:", failCount);
+	}
+
+
+	runUnitTests();
+	
+
+        function createAudioElement(id, mp3FilePath, oggFilePath) {
+                // Creating HTML similar to the following
+                // code from https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_audio_play
+                // accessed at Wednesday, April 13, 2022.
+                // <audio id="myAudio">
+                //     <source src="horse.ogg" type="audio/ogg">
+                //     <source src="horse.mp3" type="audio/mpeg">
+                //     Your browser does not support the audio element.
+                // </audio>
+
+
+                var audioElement = document.createElement("audio");
+                audioElement.id = id;
+
+                if (oggFilePath) {
+                    var oggSourceElement = document.createElement("source");
+                    oggSourceElement.src = oggFilePath;
+                    oggSourceElement.type = "audio/ogg";
+                    audioElement.appendChild(oggSourceElement);
+                }
+
+                if (mp3FilePath) {
+                    var mp3SourceElement = document.createElement("source");
+                    mp3SourceElement.src = mp3FilePath;
+                    mp3SourceElement.type = "audio/mpeg"; 
+                    audioElement.appendChild(mp3SourceElement);
+                }
+                var noSupportMessage = document.createTextNode("Cannot play audio because your browser does not support the audio element.");
+                audioElement.appendChild(noSupportMessage)
+                return audioElement;
+            }
+
+
+		function attachAudioElements(idOfRootElement) {
+            var audioSectionDiv = document.createElement("div");
+            for (var i = 0; i < alphabet.length; i++) {
+                root.appendChild(createAudioElement(alphabet[i].audioId, alphabet[i].mp3AudioFile, alphabet[i].oggAudioFile))
+            }
+
+            for (var i = 0; i < finalCharacters.length; i++) {
+                root.appendChild(createAudioElement(finalCharacters[i].audioId, finalCharacters[i].mp3AudioFile, finalCharacters[i].oggAudioFile))
+            }
+
+            root.appendChild(audioSectionDiv);
+		}
+		
+		function createMainMessageLabel() {
+			let mainMessageLabel = document.createElement("div");
+			mainMessageLabel.id = "mainMessageLabel";
+			mainMessageLabel.className = "primaryMessage";
+			let mainMessageLabelText = document.createTextNode("Welcome!");
+			mainMessageLabel.dir = "ltr";
+			mainMessageLabel.appendChild(mainMessageLabelText);
+			return mainMessageLabel;
+		}
+		
+		function setMainMessage(newerText) {
+			document.getElementById("mainMessageLabel");
+			mainMessageLabel.dir = "ltr"; // set text direction
+			mainMessageLabel.innerText = newerText;
+		}
+		
+		// This function assumes the audio elements 
+		// are already available.
+        function attachButtonsForSpeaking(idOfRootElement) {
+            var root = document.getElementById(idOfRootElement);
+
+            root.dir = "rtl";
+
+            var alphabetDiv = document.createElement("div");
+            alphabetDiv.className = "alphabet";
+            root.appendChild(createHeading(2, "Hebrew Alphabet: Play Audio of Letter Names"))
+
+            root.appendChild(createParagraph(aboutThisApplication));
+
+			let controlPanel = document.createElement("p");
+			controlPanel.className = "controlPanel";
+
+			controlPanel.appendChild(createToggleQuizButton());
+			controlPanel.appendChild(createLetterFormToggle());
+			root.appendChild(controlPanel)
+			root.appendChild(createPlaySoundAgainButton());
+			root.appendChild(createMainMessageLabel());
+			for (var i = 0; i < alphabet.length; i++) {
+                alphabetDiv.appendChild(createButtonForSpeaking(alphabet[i]));
+            }
+            root.appendChild(alphabetDiv);
+
+            var finalCharactersDiv = document.createElement("div");
+            root.appendChild(createHeading(2, "Final Characters"))
+
+            finalCharactersDiv.className = "finals";
+            for (var i = 0; i < finalCharacters.length; i++) {
+                finalCharactersDiv.appendChild(createButtonForSpeaking(finalCharacters[i]));
+            }
+            root.appendChild(finalCharactersDiv);
+        }
+
+        // Create heading for the whole Hebrew Alphabet Basic keyboard
+        // application.
+        function createAppHeading() {
+            var heading1 = createHeading("1", "Hebrew Alphabet Basic Keyboard");
+            return heading1;
+        }
+
+        function createParagraph(someText) {
+            var paragraph = document.createElement("p");
+            paragraph.dir = "ltr";
+            var textElement = document.createTextNode(someText);
+            paragraph.appendChild(textElement);
+            return paragraph;
+        }
+
+		// For the place where one worked on a resume.
+		function createPlaceParagraph(someText) {
+            var paragraph = document.createElement("p");
+            paragraph.dir = "ltr";
+			paragraph.className = "place";
+            var textElement = document.createTextNode(someText);
+            paragraph.appendChild(textElement);
+            return paragraph;
+        }
+
+		// For the time period when one worked on a resume.
+		function createTimeParagraph(someText) {
+            var paragraph = document.createElement("p");
+            paragraph.dir = "ltr";
+			paragraph.className = "time";
+            var textElement = document.createTextNode(someText);
+            paragraph.appendChild(textElement);
+            return paragraph;
+        }
+
+
+        // Create a footer.
+        function createFooter() {
+            var footer = document.createElement("footer");
+            var link = document.createElement("a");
+            link.href = "https://www.jewishvirtuallibrary.org/the-hebrew-alphabet-aleph-bet";
+            var linkText = document.createTextNode("The Hebrew Alphabet (Aleph-Bet)");
+            link.appendChild(linkText);
+            footer.appendChild(link);
+
+            return footer;
+        }
+
+
+
+		// Create a resume for the software developer
+		// of this web application.
+		function createResume() {
+			let resumeRoot = document.createElement("div");
+			resumeRoot.dir = "ltr";
+			let nameHeading = createHeading(1, "Elsanussi S. Mneina");
+			resumeRoot.appendChild(nameHeading);
+			resumeRoot.className = "resume";
+			let contactInfo = createParagraph("elsa" + "nussi@" + "outlook.com, +1" + "204-292-1033, " + "linkedin.com/in/elsanussi-s-mneina");
+			resumeRoot.appendChild(contactInfo);
+			let shortSummaryHeading = createHeading(4, "Summary");
+			resumeRoot.appendChild(shortSummaryHeading);
+			let shortSummaryParagraph = createParagraph("A graduate of the University of Manitoba with a Bachelors degree in Computer Science (2011) and a Bachelors degree in Arts (with a major in Linguistics, 2017).");
+			resumeRoot.appendChild(shortSummaryParagraph);
+
+			let employmentHeading = createHeading(2, "Employment");
+			resumeRoot.appendChild(employmentHeading);
+			let employment1 = createHeading(3, "Junior Web Developer");
+			resumeRoot.appendChild(employment1);
+			let employment1Subheading = createPlaceParagraph("BIT Space Development (Winnipeg)");
+			resumeRoot.appendChild(employment1Subheading);
+			let employment1Subheading2 = createTimeParagraph("May 2022" + "\u2014" + "Present");
+			resumeRoot.appendChild(employment1Subheading2);
+			let employment1List = document.createElement("ul");
+			let employment1ListItem1 = document.createElement("li");
+			employment1ListItem1.appendChild(document.createTextNode("Create Web APIs for creating, reading, updating, and deleting records in a relational database"));
+			employment1List.appendChild(employment1ListItem1);
+			resumeRoot.appendChild(employment1List);			
+			let employment2 = createHeading(3, "Traffic Control Person");
+			resumeRoot.appendChild(employment2);
+			let employment2Subheading = createPlaceParagraph("Roads and Works Department, Town of Oakville (Ontario)");
+			resumeRoot.appendChild(employment2Subheading);
+			let employment2Subheading2 = createTimeParagraph("September" + "\u2014" + "October 2019");
+			resumeRoot.appendChild(employment2Subheading2);
+
+			let employment3 = createHeading(3, "Research Coordinator");
+			resumeRoot.appendChild(employment3);
+			let employment3Subheading = createPlaceParagraph("Red River College (Winnipeg)");
+			resumeRoot.appendChild(employment3Subheading);
+			let employment3Subheading2 = createTimeParagraph("March 2018" + "\u2014" + "February 2019");
+			resumeRoot.appendChild(employment3Subheading2);
+
+			let employment4 = createHeading(3, "Software Specialist 1");
+			resumeRoot.appendChild(employment4);
+			let employment4Subheading = createPlaceParagraph("Manitoba Telecom Systems (Winnipeg)");
+			resumeRoot.appendChild(employment4Subheading);
+			let employment4Subheading2 = createTimeParagraph("May 2012" + "\u2014" + "October 2014");
+			resumeRoot.appendChild(employment4Subheading2);
+
+			let employment5 = createHeading(3, "Grader-Marker for Programming for Scientists and Engineers Course");
+			resumeRoot.appendChild(employment5);
+			let employment5Subheading = createPlaceParagraph("Mr. Terry Andres, University of Manitoba");
+			resumeRoot.appendChild(employment5Subheading);
+			let employment5Subheading2 = createTimeParagraph("September 2011" + "\u2014" + "January 2012");
+			resumeRoot.appendChild(employment5Subheading2);
+
+			let employment6 = createHeading(3, "Grader-Marker for Data Structures and Algorithms Course");
+			resumeRoot.appendChild(employment6);
+			let employment6Subheading = createPlaceParagraph("Dr. Stephane Durocher, University of Manitoba");
+			resumeRoot.appendChild(employment6Subheading);
+			let employment6Subheading2 = createTimeParagraph("September" + "\u2014" + "December 2010");
+			resumeRoot.appendChild(employment6Subheading2);
+
+			let employment7 = createHeading(3, "Language Consultant/Teaching Assistant");
+			resumeRoot.appendChild(employment7);
+			let employment7Subheading = createPlaceParagraph("Dr. Lorna Macdonald, University of Manitoba");
+			resumeRoot.appendChild(employment7Subheading);
+			let employment7Subheading2 = createTimeParagraph("Autumn 2009" + "\u2014" + "Winter 2010");
+			resumeRoot.appendChild(employment7Subheading2);
+
+			let employment8 = createHeading(3, "Grader-Marker for Data Structures and Algorithms Course");
+			resumeRoot.appendChild(employment8);
+
+			let employment8Subheading = createPlaceParagraph("Alan Marshall, University of Manitoba");
+			resumeRoot.appendChild(employment8Subheading);
+			let employment8Subheading2 = createTimeParagraph("September" + "\u2014" + "December 2009");
+			resumeRoot.appendChild(employment8Subheading2);
+
+
+
+			let educationHeading = createHeading(2, "Education");
+			resumeRoot.appendChild(educationHeading);
+			let education1 = createHeading(3, "Bachelor of Arts (Advanced)" + "\u2014" + "Major: Linguistics, Minor: Latin");
+			resumeRoot.appendChild(education1);
+			let education1Subheading = createPlaceParagraph("University of Manitoba");
+			resumeRoot.appendChild(education1Subheading);
+			let education1Subheading2 = createTimeParagraph("September 2014" + "\u2014" + "May 2017");
+			resumeRoot.appendChild(education1Subheading2);
+
+
+			let education2 = createHeading(3, "Bachelor of Science" + "\u2014" + "Major: Computer Science");
+			resumeRoot.appendChild(education2);
+			let education2Subheading = createPlaceParagraph("University of Manitoba");
+			resumeRoot.appendChild(education2Subheading);
+			let education2Subheading2 = createTimeParagraph("September 2006" + "\u2014" + "June 2011");
+			resumeRoot.appendChild(education2Subheading2);
+			let overviewHeading = createHeading(2, "Overview");
+
+			return resumeRoot;
+		}
+
+        root.appendChild(document.createComment("Start of HTML code generated by Javascript."));
+		attachAudioElements("root");
+        attachButtonsForSpeaking("root");
+		let resumeTargetPanel = document.createElement("div");
+		resumeTargetPanel.id = "resumeTargetPanel";
+		root.appendChild(resumeTargetPanel);
+		root.appendChild(createAboutTheComputerProgrammerButton());
+
+
+        root.appendChild(document.createComment("End of HTML code generated by Javascript."));
+    </script>
+
+</body>
+<!-- Created by Elsanussi Mneina (m.). You can contact me (Elsanussi Mneina) at elsanussi.m@outlook.com, mentioning this page)
+  This single page web application for spelling Hebrew with audio was first released to the public on April 13, 2022 on GitHub under an MIT license.
+https://github.com/elsanussi-s-mneina/hebrew-alphabet-audio-speller-html-js
+
+Here is the LICENSE for this web application:
+MIT License
+Copyright (c) 2022 Elsanussi Mneina
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+-->
+
+</html>
