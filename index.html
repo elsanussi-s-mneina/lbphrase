@@ -286,26 +286,26 @@
 			{ text: "\u05D0", buttonLabel: "\u05D0 Alef", shortButtonLabel: "\u05D0", description: "Alef", oggAudioFile: "audio/05D0.ogg", mp3AudioFile: "audio/05D0.mp3", audioId: "alefAudio", buttonId: "alefButton",
 			cursivePicture: "picture/cursive/alef.png"
 		
-		},
+			},
 			{ text: "\u05D1\u05BC", buttonLabel: "\u05D1\u05BC Bet", shortButtonLabel: "\u05D1\u05BC",  description: "Bet", oggAudioFile: "audio/05D1.ogg", mp3AudioFile: "audio/05D1.mp3", audioId: "betAudio", buttonId: "betButton",
 			cursivePicture: "picture/cursive/bet_ns1.png"
-		},
+			},
 			{ text: "\u05D1", buttonLabel: "\u05D1 Vet", shortButtonLabel: "\u05D1",  description: "Vet", oggAudioFile: "audio/05D1_sp.ogg", mp3AudioFile: "audio/05D1_sp.mp3", audioId: "vetAudio", buttonId: "vetButton",
 			cursivePicture: "picture/cursive/bet2.png"		
-		 },
+			 },
 			{ text: "\u05D2", buttonLabel: "\u05D2 Gimel", shortButtonLabel: "\u05D2",  description: "Gimel", oggAudioFile: "audio/05D2.ogg", mp3AudioFile: "audio/05D2.mp3", audioId: "gimelAudio", buttonId: "gimelButton",
 		cursivePicture: "picture/cursive/gimel1.png" },
 			{ text: "\u05D3", buttonLabel: "\u05D3 Dalet", shortButtonLabel: "\u05D3",  description: "Dalet", oggAudioFile: "audio/05D3.ogg", mp3AudioFile: "audio/05D3.mp3", audioId: "daletAudio", buttonId: "daletButton",
 			cursivePicture: "picture/cursive/dalet1.png"
-		},
+			},
 			{ text: "\u05D4", buttonLabel: "\u05D4 He", shortButtonLabel: "\u05D4", description: "Hey", oggAudioFile: "audio/05D4.ogg", mp3AudioFile: "audio/05D4.mp3", audioId: "heyAudio", buttonId: "heyButton",
 			cursivePicture: "picture/cursive/heh1.png"
-		},
+			},
 			{ text: "\u05D5", buttonLabel: "\u05D5 Vav", shortButtonLabel: "\u05D5", description: "vav", oggAudioFile: "audio/05D5.ogg", mp3AudioFile: "audio/05D5.mp3", audioId: "vavAudio", buttonId: "vavButton",
 			cursivePicture: "picture/cursive/vav1.png"
- },
+ 			},
 			{ text: "\u05D6", buttonLabel: "\u05D6 Zayin", shortButtonLabel: "\u05D6",  description: "zayen", oggAudioFile: "audio/05D6.ogg", mp3AudioFile: "audio/05D6.mp3", audioId: "zayenAudio", buttonId: "zayenButton", cursivePicture: "picture/cursive/zayin1.png"
- },
+ 			},
 			{ text: "\u05D7", buttonLabel: "\u05D7 Chet", shortButtonLabel: "\u05D7",  description: "khet", oggAudioFile: "audio/05D7.ogg", mp3AudioFile: "audio/05D7.mp3", audioId: "khetAudio", buttonId: "khetButton", cursivePicture: "picture/cursive/chet1.png" },
 			{ text: "\u05D8", buttonLabel: "\u05D8 Tet", shortButtonLabel: "\u05D8",  description: "tet", oggAudioFile: "audio/05D8.ogg", mp3AudioFile: "audio/05D8.mp3", audioId: "tetAudio", buttonId: "tetButton", cursivePicture: "picture/cursive/tet1.png" },
 			{ text: "\u05D9", buttonLabel: "\u05D9 Yod", shortButtonLabel: "\u05D9", description: "yod", oggAudioFile: "audio/05D9.ogg", mp3AudioFile: "audio/05D9.mp3", audioId: "yodAudio", buttonId: "yodButton", cursivePicture: "picture/cursive/yod1.png" },
@@ -826,91 +826,89 @@
 			return element;
 		}
 
-	function createHeading_whenLevelIsOne_tagIsH1() {
-		let expected = document.createElement("h1");
-		let actual = createHeading(1, "hi there");
-		
-		if (actual.nodeName === "H1") {
-			return [true, "."];
-		} else {
-			return [false, "createHeading function did not return an HTML Tag H1 when level was set to 1."];
-		}
-	}
-
-	function createHeading_whenLevelIsSix_tagIsH6() {
-		let expected = document.createElement("h6");
-		let actual = createHeading(6, "hello there");
-		
-		if (actual.nodeName === "H6") {
-			return [true, "."];
-		} else {
-			return [false, "createHeading function did not return an HTML Tag H6 when level was set to 6."];
-		}
-	}
-
-	
-
-	// a List of unit test functions.
-	// Each function returns a tuple of type (boolean, string).
-	// Each function has no parameters.
-	let unitTests = [createHeading_whenLevelIsOne_tagIsH1, createHeading_whenLevelIsSix_tagIsH6];
-
-	function runUnitTests() {
-		let passCount = 0;
-		let failCount = 0;
-		let message = '';
-		for (let i = 0; i < unitTests.length; i += 1) {
-			const currentUnitTest = unitTests[i];
-			const [didTestPass, messageFromTest] = currentUnitTest();
-
-			message = message + " " + messageFromTest;
-
-			if (didTestPass) {
-				passCount += 1;
+		function createHeading_whenLevelIsOne_tagIsH1() {
+			let expected = document.createElement("h1");
+			let actual = createHeading(1, "hi there");
+			
+			if (actual.nodeName === "H1") {
+				return [true, "."];
 			} else {
-				failCount += 1;
+				return [false, "createHeading function did not return an HTML Tag H1 when level was set to 1."];
 			}
 		}
-		console.log(message);
-		console.log("Number of passed tests:", passCount);
-		console.log("Number of failed tests:", failCount);
-	}
+
+		function createHeading_whenLevelIsSix_tagIsH6() {
+			let expected = document.createElement("h6");
+			let actual = createHeading(6, "hello there");
+			
+			if (actual.nodeName === "H6") {
+				return [true, "."];
+			} else {
+				return [false, "createHeading function did not return an HTML Tag H6 when level was set to 6."];
+			}
+		}
+
+		// a List of unit test functions.
+		// Each function returns a tuple of type (boolean, string).
+		// Each function has no parameters.
+		let unitTests = [createHeading_whenLevelIsOne_tagIsH1, createHeading_whenLevelIsSix_tagIsH6];
+
+		function runUnitTests() {
+			let passCount = 0;
+			let failCount = 0;
+			let message = '';
+			for (let i = 0; i < unitTests.length; i += 1) {
+				const currentUnitTest = unitTests[i];
+				const [didTestPass, messageFromTest] = currentUnitTest();
+
+				message = message + " " + messageFromTest;
+
+				if (didTestPass) {
+					passCount += 1;
+				} else {
+					failCount += 1;
+				}
+			}
+			console.log(message);
+			console.log("Number of passed tests:", passCount);
+			console.log("Number of failed tests:", failCount);
+		}
 
 
-	runUnitTests();
+			runUnitTests();
 	
 
 		function createAudioElement(id, mp3FilePath, oggFilePath) {
-				// Creating HTML similar to the following
-				// code from https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_audio_play
-				// accessed at Wednesday, April 13, 2022.
-				// <audio id="myAudio">
-				//	 <source src="horse.ogg" type="audio/ogg">
-				//	 <source src="horse.mp3" type="audio/mpeg">
-				//	 Your browser does not support the audio element.
-				// </audio>
+			// Creating HTML similar to the following
+			// code from https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_audio_play
+			// accessed at Wednesday, April 13, 2022.
+			// <audio id="myAudio">
+			//	 <source src="horse.ogg" type="audio/ogg">
+			//	 <source src="horse.mp3" type="audio/mpeg">
+			//	 Your browser does not support the audio element.
+			// </audio>
 
 
-				var audioElement = document.createElement("audio");
-				audioElement.id = id;
+			var audioElement = document.createElement("audio");
+			audioElement.id = id;
 
-				if (oggFilePath) {
-					var oggSourceElement = document.createElement("source");
-					oggSourceElement.src = oggFilePath;
-					oggSourceElement.type = "audio/ogg";
-					audioElement.appendChild(oggSourceElement);
-				}
-
-				if (mp3FilePath) {
-					var mp3SourceElement = document.createElement("source");
-					mp3SourceElement.src = mp3FilePath;
-					mp3SourceElement.type = "audio/mpeg"; 
-					audioElement.appendChild(mp3SourceElement);
-				}
-				var noSupportMessage = document.createTextNode("Cannot play audio because your browser does not support the audio element.");
-				audioElement.appendChild(noSupportMessage)
-				return audioElement;
+			if (oggFilePath) {
+				var oggSourceElement = document.createElement("source");
+				oggSourceElement.src = oggFilePath;
+				oggSourceElement.type = "audio/ogg";
+				audioElement.appendChild(oggSourceElement);
 			}
+
+			if (mp3FilePath) {
+				var mp3SourceElement = document.createElement("source");
+				mp3SourceElement.src = mp3FilePath;
+				mp3SourceElement.type = "audio/mpeg"; 
+				audioElement.appendChild(mp3SourceElement);
+			}
+			var noSupportMessage = document.createTextNode("Cannot play audio because your browser does not support the audio element.");
+			audioElement.appendChild(noSupportMessage)
+			return audioElement;
+		}
 
 
 		function attachAudioElements(idOfRootElement) {
