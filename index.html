@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
+	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width">
-    <title>Hebrew Alphabet Audio Speller</title>
-    <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-        }
+	<title>Hebrew Alphabet Audio Speller</title>
+	<style>
+		body {
+			font-family: Arial, Helvetica, sans-serif;
+		}
 
 		p {
 			/* Do not show too many characters on one line: */
@@ -26,17 +26,17 @@
 			padding-bottom: -0.2em;
 		}
 
-        .plainbutton {
-            font-size: 3em;
-            margin: 0.4em;
-            padding: 0.2em;
-            border-radius: 0.3em;
-            background-color: whitesmoke;
-            border-color: gray;
-            border-width: 0.12em;
-        }
+		.plainbutton {
+			font-size: 3em;
+			margin: 0.4em;
+			padding: 0.2em;
+			border-radius: 0.3em;
+			background-color: whitesmoke;
+			border-color: gray;
+			border-width: 0.12em;
+		}
 
-        @keyframes highlightOn {
+		@keyframes highlightOn {
 			0% {
 				background-color: #3f51b5;
 				border-width: 0.32em;
@@ -159,12 +159,12 @@
 		button
 		{	
 			font-family: inherit;
-		    font-size: 32pt;
+			font-size: 32pt;
 			margin: 0.3em;
 			padding: 0.6em;
 			border-radius: 0.9em;
-            border-top-left-radius: 1.0em;
-            border-top-right-radius: 0.0em;
+			border-top-left-radius: 1.0em;
+			border-top-right-radius: 0.0em;
 			background-color: #3f51b5;
 			border-color: gray;
 			border-width: 0.32em;
@@ -188,11 +188,11 @@
 				height: 33vh
 			}
 
-        h2 {
-            margin-top: 1.5em;
-            margin-bottom: 0.0em;
-            text-align: center;
-        }
+		h2 {
+			margin-top: 1.5em;
+			margin-bottom: 0.0em;
+			text-align: center;
+		}
 
 		.primaryMessage {
 			font-size: 20px;
@@ -200,24 +200,24 @@
 		}
 		
 		.quizToggleOff {
-		    font-size: 32pt;
+			font-size: 32pt;
 			margin: 0.3em;
 			padding: 0.6em;
 			border-radius: 0.9em;
-            border-top-right-radius: 1.0em;
-            border-top-left-radius: 0.0em;
+			border-top-right-radius: 1.0em;
+			border-top-left-radius: 0.0em;
 			background-color: white;
 			border-color: gray;
 			border-width: 0.32em;			
 		}
 
 		.quizToggleOn {
-		    font-size: 32pt;
+			font-size: 32pt;
 			margin: 0.3em;
 			padding: 0.6em;
 			border-radius: 0.9em;
-            border-top-right-radius: 1.0em;
-            border-top-left-radius: 0.0em;
+			border-top-right-radius: 1.0em;
+			border-top-left-radius: 0.0em;
 			background-color: gray;
 			border-color: gray;
 			border-width: 0.32em;			
@@ -230,14 +230,14 @@
 		}
 
 		
-        /* Some classes for style, for those programmers who want
-        a more specific style:
-        .punctuation {}
-        .alphabet {}
-        .whitespace {}
-        .combinations {}
-        .finals {}
-        */
+		/* Some classes for style, for those programmers who want
+		a more specific style:
+		.punctuation {}
+		.alphabet {}
+		.whitespace {}
+		.combinations {}
+		.finals {}
+		*/
 
 		/* Resume styles */
 		.resume {
@@ -257,9 +257,9 @@
 </head>
 
 <body>
-    <div id="root"></div>
+	<div id="root"></div>
 
-    <script>
+	<script>
 		let appState = { 
 			quizMode: false, // whether there is a quiz running.
 			currentQuizPromptAudioId: null, // what the correct answer is (ID of the audio)
@@ -272,73 +272,73 @@
 			showingPrinted: true,
 		};
 		
-        var aboutThisApplication = "This is for causing the computer to speak out the names of the Hebrew letters. Make sure your sound is on. Information about the software developer is available at the following web address: https://www.github.com/elsanussi-s-mneina";
+		var aboutThisApplication = "This is for causing the computer to speak out the names of the Hebrew letters. Make sure your sound is on. Information about the software developer is available at the following web address: https://www.github.com/elsanussi-s-mneina";
 
-        // A variable that defines the Hebrew alphabet.
-        // Each character is defined as the 
-        // text that it will write in the text box,
-        // the buttonLabel which is the text that is written on the button
-        // and the description, which is what a screenreader would describe
-        // the button as.
-        // Note to self we are missing the audio for vet, kaf, kaf sofit, peh and sin. We have the audio for bet, khaf, khaf sofit, feh, and shin.
-        // That is why there are some missing buttons.
-        var alphabet = [
-            { text: "\u05D0", buttonLabel: "\u05D0 Alef", shortButtonLabel: "\u05D0", description: "Alef", oggAudioFile: "audio/05D0.ogg", mp3AudioFile: "audio/05D0.mp3", audioId: "alefAudio", buttonId: "alefButton",
+		// A variable that defines the Hebrew alphabet.
+		// Each character is defined as the 
+		// text that it will write in the text box,
+		// the buttonLabel which is the text that is written on the button
+		// and the description, which is what a screenreader would describe
+		// the button as.
+		// Note to self we are missing the audio for vet, kaf, kaf sofit, peh and sin. We have the audio for bet, khaf, khaf sofit, feh, and shin.
+		// That is why there are some missing buttons.
+		var alphabet = [
+			{ text: "\u05D0", buttonLabel: "\u05D0 Alef", shortButtonLabel: "\u05D0", description: "Alef", oggAudioFile: "audio/05D0.ogg", mp3AudioFile: "audio/05D0.mp3", audioId: "alefAudio", buttonId: "alefButton",
 			cursivePicture: "picture/cursive/alef.png"
 		
 		},
-            { text: "\u05D1\u05BC", buttonLabel: "\u05D1\u05BC Bet", shortButtonLabel: "\u05D1\u05BC",  description: "Bet", oggAudioFile: "audio/05D1.ogg", mp3AudioFile: "audio/05D1.mp3", audioId: "betAudio", buttonId: "betButton",
+			{ text: "\u05D1\u05BC", buttonLabel: "\u05D1\u05BC Bet", shortButtonLabel: "\u05D1\u05BC",  description: "Bet", oggAudioFile: "audio/05D1.ogg", mp3AudioFile: "audio/05D1.mp3", audioId: "betAudio", buttonId: "betButton",
 			cursivePicture: "picture/cursive/bet_ns1.png"
 		},
-            { text: "\u05D1", buttonLabel: "\u05D1 Vet", shortButtonLabel: "\u05D1",  description: "Vet", oggAudioFile: "audio/05D1_sp.ogg", mp3AudioFile: "audio/05D1_sp.mp3", audioId: "vetAudio", buttonId: "vetButton",
+			{ text: "\u05D1", buttonLabel: "\u05D1 Vet", shortButtonLabel: "\u05D1",  description: "Vet", oggAudioFile: "audio/05D1_sp.ogg", mp3AudioFile: "audio/05D1_sp.mp3", audioId: "vetAudio", buttonId: "vetButton",
 			cursivePicture: "picture/cursive/bet2.png"		
 		 },
 			{ text: "\u05D2", buttonLabel: "\u05D2 Gimel", shortButtonLabel: "\u05D2",  description: "Gimel", oggAudioFile: "audio/05D2.ogg", mp3AudioFile: "audio/05D2.mp3", audioId: "gimelAudio", buttonId: "gimelButton",
 		cursivePicture: "picture/cursive/gimel1.png" },
-            { text: "\u05D3", buttonLabel: "\u05D3 Dalet", shortButtonLabel: "\u05D3",  description: "Dalet", oggAudioFile: "audio/05D3.ogg", mp3AudioFile: "audio/05D3.mp3", audioId: "daletAudio", buttonId: "daletButton",
+			{ text: "\u05D3", buttonLabel: "\u05D3 Dalet", shortButtonLabel: "\u05D3",  description: "Dalet", oggAudioFile: "audio/05D3.ogg", mp3AudioFile: "audio/05D3.mp3", audioId: "daletAudio", buttonId: "daletButton",
 			cursivePicture: "picture/cursive/dalet1.png"
 		},
-            { text: "\u05D4", buttonLabel: "\u05D4 He", shortButtonLabel: "\u05D4", description: "Hey", oggAudioFile: "audio/05D4.ogg", mp3AudioFile: "audio/05D4.mp3", audioId: "heyAudio", buttonId: "heyButton",
+			{ text: "\u05D4", buttonLabel: "\u05D4 He", shortButtonLabel: "\u05D4", description: "Hey", oggAudioFile: "audio/05D4.ogg", mp3AudioFile: "audio/05D4.mp3", audioId: "heyAudio", buttonId: "heyButton",
 			cursivePicture: "picture/cursive/heh1.png"
 		},
-            { text: "\u05D5", buttonLabel: "\u05D5 Vav", shortButtonLabel: "\u05D5", description: "vav", oggAudioFile: "audio/05D5.ogg", mp3AudioFile: "audio/05D5.mp3", audioId: "vavAudio", buttonId: "vavButton",
+			{ text: "\u05D5", buttonLabel: "\u05D5 Vav", shortButtonLabel: "\u05D5", description: "vav", oggAudioFile: "audio/05D5.ogg", mp3AudioFile: "audio/05D5.mp3", audioId: "vavAudio", buttonId: "vavButton",
 			cursivePicture: "picture/cursive/vav1.png"
  },
-            { text: "\u05D6", buttonLabel: "\u05D6 Zayin", shortButtonLabel: "\u05D6",  description: "zayen", oggAudioFile: "audio/05D6.ogg", mp3AudioFile: "audio/05D6.mp3", audioId: "zayenAudio", buttonId: "zayenButton", cursivePicture: "picture/cursive/zayin1.png"
+			{ text: "\u05D6", buttonLabel: "\u05D6 Zayin", shortButtonLabel: "\u05D6",  description: "zayen", oggAudioFile: "audio/05D6.ogg", mp3AudioFile: "audio/05D6.mp3", audioId: "zayenAudio", buttonId: "zayenButton", cursivePicture: "picture/cursive/zayin1.png"
  },
-            { text: "\u05D7", buttonLabel: "\u05D7 Chet", shortButtonLabel: "\u05D7",  description: "khet", oggAudioFile: "audio/05D7.ogg", mp3AudioFile: "audio/05D7.mp3", audioId: "khetAudio", buttonId: "khetButton", cursivePicture: "picture/cursive/chet1.png" },
-            { text: "\u05D8", buttonLabel: "\u05D8 Tet", shortButtonLabel: "\u05D8",  description: "tet", oggAudioFile: "audio/05D8.ogg", mp3AudioFile: "audio/05D8.mp3", audioId: "tetAudio", buttonId: "tetButton", cursivePicture: "picture/cursive/tet1.png" },
-            { text: "\u05D9", buttonLabel: "\u05D9 Yod", shortButtonLabel: "\u05D9", description: "yod", oggAudioFile: "audio/05D9.ogg", mp3AudioFile: "audio/05D9.mp3", audioId: "yodAudio", buttonId: "yodButton", cursivePicture: "picture/cursive/yod1.png" },
-            { text: "\u05DB\u05BC", buttonLabel: "\u05DB\u05BC Kaf", shortButtonLabel: "\u05DB\u05BC", description: "kaf", oggAudioFile: "audio/05DB_ns.ogg", mp3AudioFile: "audio/05DB_ns.mp3", audioId: "kafAudio", buttonId: "kafButton", cursivePicture: "picture/cursive/kaf_ns1.png" },
+			{ text: "\u05D7", buttonLabel: "\u05D7 Chet", shortButtonLabel: "\u05D7",  description: "khet", oggAudioFile: "audio/05D7.ogg", mp3AudioFile: "audio/05D7.mp3", audioId: "khetAudio", buttonId: "khetButton", cursivePicture: "picture/cursive/chet1.png" },
+			{ text: "\u05D8", buttonLabel: "\u05D8 Tet", shortButtonLabel: "\u05D8",  description: "tet", oggAudioFile: "audio/05D8.ogg", mp3AudioFile: "audio/05D8.mp3", audioId: "tetAudio", buttonId: "tetButton", cursivePicture: "picture/cursive/tet1.png" },
+			{ text: "\u05D9", buttonLabel: "\u05D9 Yod", shortButtonLabel: "\u05D9", description: "yod", oggAudioFile: "audio/05D9.ogg", mp3AudioFile: "audio/05D9.mp3", audioId: "yodAudio", buttonId: "yodButton", cursivePicture: "picture/cursive/yod1.png" },
+			{ text: "\u05DB\u05BC", buttonLabel: "\u05DB\u05BC Kaf", shortButtonLabel: "\u05DB\u05BC", description: "kaf", oggAudioFile: "audio/05DB_ns.ogg", mp3AudioFile: "audio/05DB_ns.mp3", audioId: "kafAudio", buttonId: "kafButton", cursivePicture: "picture/cursive/kaf_ns1.png" },
 
 			{ text: "\u05DB", buttonLabel: "\u05DB Khaf", shortButtonLabel: "\u05DB", description: "khaf", oggAudioFile: "audio/05DB.ogg", mp3AudioFile: "audio/05DB.mp3", audioId: "khafAudio", buttonId: "khafButton", cursivePicture: "picture/cursive/kaf1.png" },
-            { text: "\u05DC", buttonLabel: "\u05DC Lamed", shortButtonLabel: "\u05DC", description: "lamed", oggAudioFile: "audio/05DC.ogg", mp3AudioFile: "audio/05DC.mp3", audioId: "lamedAudio", buttonId: "lamedButton", cursivePicture: "picture/cursive/lamed1.png" },
-            { text: "\u05DE", buttonLabel: "\u05DE Mem", shortButtonLabel: "\u05DE", description: "mem", oggAudioFile: "audio/05DE.ogg", mp3AudioFile: "audio/05DE.mp3", audioId: "memAudio", buttonId: "memButton", cursivePicture: "picture/cursive/mem1.png" },
-            { text: "\u05E0", buttonLabel: "\u05E0 Nun", shortButtonLabel: "\u05E0", description: "nun", oggAudioFile: "audio/05E0.ogg", mp3AudioFile: "audio/05E0.mp3", audioId: "nunAudio", buttonId: "nunButton", cursivePicture: "picture/cursive/nun1.png" },
-            { text: "\u05E1", buttonLabel: "\u05E1 Samekh", shortButtonLabel: "\u05E1", description: "samekh", oggAudioFile: "audio/05E1.ogg", mp3AudioFile: "audio/05E1.mp3", audioId: "samekhAudio", buttonId: "samekhButton", cursivePicture: "picture/cursive/samekh1.png" }, 
-            // I chose to spell Samekh with "kh here" even though the website, I am basing
-            // it on is different.
-            
-            { text: "\u05E2", buttonLabel: "\u05E2 Ayin", shortButtonLabel: "\u05E2", description: "ayin", oggAudioFile: "audio/05E2.ogg", mp3AudioFile: "audio/05E2.mp3", audioId: "ayinAudio", buttonId: "ayinButton", cursivePicture: "picture/cursive/ayin1.png" },
-            { text: "\u05E4\u05BC", buttonLabel: "\u05E4\u05BC Peh", shortButtonLabel: "\u05E4\u05BC", description: "pey", oggAudioFile: "audio/05E4_ns.ogg", mp3AudioFile: "audio/05E4_ns.mp3", audioId: "pehAudio", buttonId: "pehButton", cursivePicture: "picture/cursive/peh_ns.png" },
+			{ text: "\u05DC", buttonLabel: "\u05DC Lamed", shortButtonLabel: "\u05DC", description: "lamed", oggAudioFile: "audio/05DC.ogg", mp3AudioFile: "audio/05DC.mp3", audioId: "lamedAudio", buttonId: "lamedButton", cursivePicture: "picture/cursive/lamed1.png" },
+			{ text: "\u05DE", buttonLabel: "\u05DE Mem", shortButtonLabel: "\u05DE", description: "mem", oggAudioFile: "audio/05DE.ogg", mp3AudioFile: "audio/05DE.mp3", audioId: "memAudio", buttonId: "memButton", cursivePicture: "picture/cursive/mem1.png" },
+			{ text: "\u05E0", buttonLabel: "\u05E0 Nun", shortButtonLabel: "\u05E0", description: "nun", oggAudioFile: "audio/05E0.ogg", mp3AudioFile: "audio/05E0.mp3", audioId: "nunAudio", buttonId: "nunButton", cursivePicture: "picture/cursive/nun1.png" },
+			{ text: "\u05E1", buttonLabel: "\u05E1 Samekh", shortButtonLabel: "\u05E1", description: "samekh", oggAudioFile: "audio/05E1.ogg", mp3AudioFile: "audio/05E1.mp3", audioId: "samekhAudio", buttonId: "samekhButton", cursivePicture: "picture/cursive/samekh1.png" }, 
+			// I chose to spell Samekh with "kh here" even though the website, I am basing
+			// it on is different.
+			
+			{ text: "\u05E2", buttonLabel: "\u05E2 Ayin", shortButtonLabel: "\u05E2", description: "ayin", oggAudioFile: "audio/05E2.ogg", mp3AudioFile: "audio/05E2.mp3", audioId: "ayinAudio", buttonId: "ayinButton", cursivePicture: "picture/cursive/ayin1.png" },
+			{ text: "\u05E4\u05BC", buttonLabel: "\u05E4\u05BC Peh", shortButtonLabel: "\u05E4\u05BC", description: "pey", oggAudioFile: "audio/05E4_ns.ogg", mp3AudioFile: "audio/05E4_ns.mp3", audioId: "pehAudio", buttonId: "pehButton", cursivePicture: "picture/cursive/peh_ns.png" },
 			{ text: "\u05E4", buttonLabel: "\u05E4 Feh", shortButtonLabel: "\u05E4", description: "fey", oggAudioFile: "audio/05E4.ogg", mp3AudioFile: "audio/05E4.mp3", audioId: "fehAudio", buttonId: "fehButton", cursivePicture: "picture/cursive/peh1.png" },
-            { text: "\u05E6", buttonfLabel: "\u05E6 Tsadeh", shortButtonLabel: "\u05E6", description: "tsadi", oggAudioFile: "audio/05E6.ogg", mp3AudioFile: "audio/05E6.mp3", audioId: "tsadehAudio", buttonId: "tsadehButton", cursivePicture: "picture/cursive/tsadeh1.png" },
-            { text: "\u05E7", buttonLabel: "\u05E7 Qof", shortButtonLabel: "\u05E7", description: "kuf", oggAudioFile: "audio/05E7.ogg", mp3AudioFile: "audio/05E7.mp3", audioId: "qofAudio", buttonId: "qofButton", cursivePicture: "picture/cursive/qof1.png" },
-            { text: "\u05E8", buttonLabel: "\u05E8 Resh", shortButtonLabel: "\u05E8", description: "resh", oggAudioFile: "audio/05E8.ogg", mp3AudioFile: "audio/05E8.mp3", audioId: "reshAudio", buttonId: "reshButton", cursivePicture: "picture/cursive/resh1.png" },
-            { text: "\u05E9\u05C1", buttonLabel: "\u05E9\u05C1 Shin", shortButtonLabel: "\u05E9\u05C1", description: "shin", oggAudioFile: "audio/05E9.ogg", mp3AudioFile: "audio/05E9.mp3", audioId: "shinAudio", buttonId: "shinButton", cursivePicture: "picture/cursive/shin1.png" },
-            { text: "\u05E9\u05C1", buttonLabel: "\u05E9\u05C1 sin", shortButtonLabel: "\u05E9\u05C2", description: "sin", oggAudioFile: "audio/05E9_l.ogg", mp3AudioFile: "audio/05E9_l.mp3", audioId: "sinAudio", buttonId: "sinButton", cursivePicture: "picture/cursive/shin1.png" },
+			{ text: "\u05E6", buttonfLabel: "\u05E6 Tsadeh", shortButtonLabel: "\u05E6", description: "tsadi", oggAudioFile: "audio/05E6.ogg", mp3AudioFile: "audio/05E6.mp3", audioId: "tsadehAudio", buttonId: "tsadehButton", cursivePicture: "picture/cursive/tsadeh1.png" },
+			{ text: "\u05E7", buttonLabel: "\u05E7 Qof", shortButtonLabel: "\u05E7", description: "kuf", oggAudioFile: "audio/05E7.ogg", mp3AudioFile: "audio/05E7.mp3", audioId: "qofAudio", buttonId: "qofButton", cursivePicture: "picture/cursive/qof1.png" },
+			{ text: "\u05E8", buttonLabel: "\u05E8 Resh", shortButtonLabel: "\u05E8", description: "resh", oggAudioFile: "audio/05E8.ogg", mp3AudioFile: "audio/05E8.mp3", audioId: "reshAudio", buttonId: "reshButton", cursivePicture: "picture/cursive/resh1.png" },
+			{ text: "\u05E9\u05C1", buttonLabel: "\u05E9\u05C1 Shin", shortButtonLabel: "\u05E9\u05C1", description: "shin", oggAudioFile: "audio/05E9.ogg", mp3AudioFile: "audio/05E9.mp3", audioId: "shinAudio", buttonId: "shinButton", cursivePicture: "picture/cursive/shin1.png" },
+			{ text: "\u05E9\u05C1", buttonLabel: "\u05E9\u05C1 sin", shortButtonLabel: "\u05E9\u05C2", description: "sin", oggAudioFile: "audio/05E9_l.ogg", mp3AudioFile: "audio/05E9_l.mp3", audioId: "sinAudio", buttonId: "sinButton", cursivePicture: "picture/cursive/shin1.png" },
 
 			{ text: "\u05EA\u05BC", buttonLabel: "\u05EA Tav", shortButtonLabel: "\u05EA", description: "tav", oggAudioFile: "audio/05EA.ogg", mp3AudioFile: "audio/05EA.mp3", audioId: "tavAudio", buttonId: "tavButton", cursivePicture: "picture/cursive/tav1.png" },
-        ];
-        
-        var finalCharacters = [
-            { text: "\u05DA", buttonLabel: "\u05DA Khaf Sofit", shortButtonLabel: "\u05DA", description: "khaf sofit", oggAudioFile: "audio/05DA.ogg", mp3AudioFile: "audio/05DA.mp3", audioId: "khafSofitAudio", buttonId: "khafSofitButton", cursivePicture: "picture/cursive/kafsofit1.png"  },
-            { text: "\u05DD", buttonLabel: "\u05DD Mem Sofit", shortButtonLabel: "\u05DD", description: "mem sofit", oggAudioFile: "audio/05DD.ogg", mp3AudioFile: "audio/05DD.mp3", audioId: "memSofitAudio", buttonId: "memSofitButton", cursivePicture: "picture/cursive/memsofit1.png"  },
-            { text: "\u05DF", buttonLabel: "\u05DF Nun Sofit", shortButtonLabel: "\u05DF", description: "nun sofit", oggAudioFile: "audio/05DF.ogg", mp3AudioFile: "audio/05DF.mp3", audioId: "nunSofitAudio", buttonId: "nunSofitButton", cursivePicture: "picture/cursive/nunsofit1.png"  },
-            { text: "\u05E3", buttonLabel: "\u05E3 Feh Sofit", shortButtonLabel: "\u05E3", description: "feh sofit", oggAudioFile: "audio/05E3.ogg", mp3AudioFile: "audio/05E3.mp3", audioId: "fehSofitAudio", buttonId: "fehSofitButton", cursivePicture: "picture/cursive/pehsofit.png"  },
-            { text: "\u05E5", buttonLabel: "\u05E5 Tsadeh Sofit", shortButtonLabel: "\u05E5", description: "tsadi sofit", oggAudioFile: "audio/05E5.ogg", mp3AudioFile: "audio/05E5.mp3", audioId: "tsadehSofitAudio", buttonId: "tsadehSofitButton", cursivePicture: "picture/cursive/tsadehsofit1.png"  },
-        ];
-        
+		];
+		
+		var finalCharacters = [
+			{ text: "\u05DA", buttonLabel: "\u05DA Khaf Sofit", shortButtonLabel: "\u05DA", description: "khaf sofit", oggAudioFile: "audio/05DA.ogg", mp3AudioFile: "audio/05DA.mp3", audioId: "khafSofitAudio", buttonId: "khafSofitButton", cursivePicture: "picture/cursive/kafsofit1.png"  },
+			{ text: "\u05DD", buttonLabel: "\u05DD Mem Sofit", shortButtonLabel: "\u05DD", description: "mem sofit", oggAudioFile: "audio/05DD.ogg", mp3AudioFile: "audio/05DD.mp3", audioId: "memSofitAudio", buttonId: "memSofitButton", cursivePicture: "picture/cursive/memsofit1.png"  },
+			{ text: "\u05DF", buttonLabel: "\u05DF Nun Sofit", shortButtonLabel: "\u05DF", description: "nun sofit", oggAudioFile: "audio/05DF.ogg", mp3AudioFile: "audio/05DF.mp3", audioId: "nunSofitAudio", buttonId: "nunSofitButton", cursivePicture: "picture/cursive/nunsofit1.png"  },
+			{ text: "\u05E3", buttonLabel: "\u05E3 Feh Sofit", shortButtonLabel: "\u05E3", description: "feh sofit", oggAudioFile: "audio/05E3.ogg", mp3AudioFile: "audio/05E3.mp3", audioId: "fehSofitAudio", buttonId: "fehSofitButton", cursivePicture: "picture/cursive/pehsofit.png"  },
+			{ text: "\u05E5", buttonLabel: "\u05E5 Tsadeh Sofit", shortButtonLabel: "\u05E5", description: "tsadi sofit", oggAudioFile: "audio/05E5.ogg", mp3AudioFile: "audio/05E5.mp3", audioId: "tsadehSofitAudio", buttonId: "tsadehSofitButton", cursivePicture: "picture/cursive/tsadehsofit1.png"  },
+		];
+		
 
 		let futureSampleQuizStatisticsElement = {perLetter: [{audioId: "tavAudio", correctCount: 4, incorrectCount: 7, totalTimesAsked: 2, confusedWith: [{audioId: "lamedAudio", numberOfTimes: 2}]}]};
 		let sampleQuizStatisticsElement = {correctResponseCount: 0, askCount: 0};
@@ -449,10 +449,10 @@
 				return fallbackValue;
 			}
 		}
-        // This function returns a function that speaks
-        // audio
-        function onClickButtonForSpeaking(audioIdToSpeak, sourceButtonId) {
-            function enclosedFunction() {
+		// This function returns a function that speaks
+		// audio
+		function onClickButtonForSpeaking(audioIdToSpeak, sourceButtonId) {
+			function enclosedFunction() {
 
 				appState.mostRecentlyTyped += getShortButtonLabelByAudioId(audioIdToSpeak, "");
 				console.log("most recently typed", appState.mostRecentlyTyped);
@@ -504,9 +504,9 @@
 					setTimeout(function() {buttonToSpeak.className = "";}, 2400);
 				}
 
-            }
-            return enclosedFunction;
-        }
+			}
+			return enclosedFunction;
+		}
 
 		// The following function is copied from devdocs.io (documentation website)
 		function getRandomInt(min, max) {
@@ -532,27 +532,27 @@
 			}
 		}
 
-        function createButtonForSpeaking(letter) {
+		function createButtonForSpeaking(letter) {
 			return createImageButtonForSpeaking(letter.text, letter.shortButtonLabel, letter.description, letter.audioId, letter.buttonId, letter.cursivePicture);
-        }
+		}
 
-        function createLabelledButtonForSpeaking(textToWrite, buttonLabel, description, audioId, buttonId) {
-            var aButton = document.createElement("button");
-	    	aButton.id = buttonId;
-            var textNode = document.createTextNode(buttonLabel);
-            aButton.appendChild(textNode);
-            aButton.ariaLabel = description;
-            aButton.addEventListener("click", onClickButtonForSpeaking(audioId, buttonId));
-            return aButton;
-        }
+		function createLabelledButtonForSpeaking(textToWrite, buttonLabel, description, audioId, buttonId) {
+			var aButton = document.createElement("button");
+			aButton.id = buttonId;
+			var textNode = document.createTextNode(buttonLabel);
+			aButton.appendChild(textNode);
+			aButton.ariaLabel = description;
+			aButton.addEventListener("click", onClickButtonForSpeaking(audioId, buttonId));
+			return aButton;
+		}
 
 		function createImageButtonForSpeaking(textToWrite, buttonLabel, description, audioId, buttonId, imageSource) {
-            var aButton = document.createElement("button");
-	    	aButton.id = buttonId;
+			var aButton = document.createElement("button");
+			aButton.id = buttonId;
 
 			let printSpan = document.createElement("span");
 			printSpan.className = "letterPrint"
-            let textNode = document.createTextNode(buttonLabel);
+			let textNode = document.createTextNode(buttonLabel);
 			printSpan.appendChild(textNode);
 			let imageElement = document.createElement("img");
 			imageElement.src = imageSource;
@@ -567,10 +567,10 @@
 			buttonInnerContainer.appendChild(imageElement);
 			
 			aButton.appendChild(buttonInnerContainer);
-            aButton.ariaLabel = description;
-            aButton.addEventListener("click", onClickButtonForSpeaking(audioId, buttonId));
-            return aButton;
-        }
+			aButton.ariaLabel = description;
+			aButton.addEventListener("click", onClickButtonForSpeaking(audioId, buttonId));
+			return aButton;
+		}
 
 
 		function populateQuizStatisticsForStartOfQuiz() {
@@ -816,15 +816,15 @@
 		}
 		
 		
-        // Create a heading of a particular level.
-        // This first argument is a number such as "1", "2", all the way to "6".
-        // The second argument is the text to show in the heading.
-        function createHeading(level, textToShow) {
-            var element = document.createElement("h" + level);
-            var textNode = document.createTextNode(textToShow);
-            element.appendChild(textNode);
-            return element;
-        }
+		// Create a heading of a particular level.
+		// This first argument is a number such as "1", "2", all the way to "6".
+		// The second argument is the text to show in the heading.
+		function createHeading(level, textToShow) {
+			var element = document.createElement("h" + level);
+			var textNode = document.createTextNode(textToShow);
+			element.appendChild(textNode);
+			return element;
+		}
 
 	function createHeading_whenLevelIsOne_tagIsH1() {
 		let expected = document.createElement("h1");
@@ -880,50 +880,50 @@
 	runUnitTests();
 	
 
-        function createAudioElement(id, mp3FilePath, oggFilePath) {
-                // Creating HTML similar to the following
-                // code from https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_audio_play
-                // accessed at Wednesday, April 13, 2022.
-                // <audio id="myAudio">
-                //     <source src="horse.ogg" type="audio/ogg">
-                //     <source src="horse.mp3" type="audio/mpeg">
-                //     Your browser does not support the audio element.
-                // </audio>
+		function createAudioElement(id, mp3FilePath, oggFilePath) {
+				// Creating HTML similar to the following
+				// code from https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_audio_play
+				// accessed at Wednesday, April 13, 2022.
+				// <audio id="myAudio">
+				//	 <source src="horse.ogg" type="audio/ogg">
+				//	 <source src="horse.mp3" type="audio/mpeg">
+				//	 Your browser does not support the audio element.
+				// </audio>
 
 
-                var audioElement = document.createElement("audio");
-                audioElement.id = id;
+				var audioElement = document.createElement("audio");
+				audioElement.id = id;
 
-                if (oggFilePath) {
-                    var oggSourceElement = document.createElement("source");
-                    oggSourceElement.src = oggFilePath;
-                    oggSourceElement.type = "audio/ogg";
-                    audioElement.appendChild(oggSourceElement);
-                }
+				if (oggFilePath) {
+					var oggSourceElement = document.createElement("source");
+					oggSourceElement.src = oggFilePath;
+					oggSourceElement.type = "audio/ogg";
+					audioElement.appendChild(oggSourceElement);
+				}
 
-                if (mp3FilePath) {
-                    var mp3SourceElement = document.createElement("source");
-                    mp3SourceElement.src = mp3FilePath;
-                    mp3SourceElement.type = "audio/mpeg"; 
-                    audioElement.appendChild(mp3SourceElement);
-                }
-                var noSupportMessage = document.createTextNode("Cannot play audio because your browser does not support the audio element.");
-                audioElement.appendChild(noSupportMessage)
-                return audioElement;
-            }
+				if (mp3FilePath) {
+					var mp3SourceElement = document.createElement("source");
+					mp3SourceElement.src = mp3FilePath;
+					mp3SourceElement.type = "audio/mpeg"; 
+					audioElement.appendChild(mp3SourceElement);
+				}
+				var noSupportMessage = document.createTextNode("Cannot play audio because your browser does not support the audio element.");
+				audioElement.appendChild(noSupportMessage)
+				return audioElement;
+			}
 
 
 		function attachAudioElements(idOfRootElement) {
-            var audioSectionDiv = document.createElement("div");
-            for (var i = 0; i < alphabet.length; i++) {
-                root.appendChild(createAudioElement(alphabet[i].audioId, alphabet[i].mp3AudioFile, alphabet[i].oggAudioFile))
-            }
+			var audioSectionDiv = document.createElement("div");
+			for (var i = 0; i < alphabet.length; i++) {
+				root.appendChild(createAudioElement(alphabet[i].audioId, alphabet[i].mp3AudioFile, alphabet[i].oggAudioFile))
+			}
 
-            for (var i = 0; i < finalCharacters.length; i++) {
-                root.appendChild(createAudioElement(finalCharacters[i].audioId, finalCharacters[i].mp3AudioFile, finalCharacters[i].oggAudioFile))
-            }
+			for (var i = 0; i < finalCharacters.length; i++) {
+				root.appendChild(createAudioElement(finalCharacters[i].audioId, finalCharacters[i].mp3AudioFile, finalCharacters[i].oggAudioFile))
+			}
 
-            root.appendChild(audioSectionDiv);
+			root.appendChild(audioSectionDiv);
 		}
 		
 		function createMainMessageLabel() {
@@ -944,16 +944,16 @@
 		
 		// This function assumes the audio elements 
 		// are already available.
-        function attachButtonsForSpeaking(idOfRootElement) {
-            var root = document.getElementById(idOfRootElement);
+		function attachButtonsForSpeaking(idOfRootElement) {
+			var root = document.getElementById(idOfRootElement);
 
-            root.dir = "rtl";
+			root.dir = "rtl";
 
-            var alphabetDiv = document.createElement("div");
-            alphabetDiv.className = "alphabet";
-            root.appendChild(createHeading(2, "Hebrew Alphabet: Play Audio of Letter Names"))
+			var alphabetDiv = document.createElement("div");
+			alphabetDiv.className = "alphabet";
+			root.appendChild(createHeading(2, "Hebrew Alphabet: Play Audio of Letter Names"))
 
-            root.appendChild(createParagraph(aboutThisApplication));
+			root.appendChild(createParagraph(aboutThisApplication));
 
 			let controlPanel = document.createElement("p");
 			controlPanel.className = "controlPanel";
@@ -964,67 +964,67 @@
 			root.appendChild(createPlaySoundAgainButton());
 			root.appendChild(createMainMessageLabel());
 			for (var i = 0; i < alphabet.length; i++) {
-                alphabetDiv.appendChild(createButtonForSpeaking(alphabet[i]));
-            }
-            root.appendChild(alphabetDiv);
+				alphabetDiv.appendChild(createButtonForSpeaking(alphabet[i]));
+			}
+			root.appendChild(alphabetDiv);
 
-            var finalCharactersDiv = document.createElement("div");
-            root.appendChild(createHeading(2, "Final Characters"))
+			var finalCharactersDiv = document.createElement("div");
+			root.appendChild(createHeading(2, "Final Characters"))
 
-            finalCharactersDiv.className = "finals";
-            for (var i = 0; i < finalCharacters.length; i++) {
-                finalCharactersDiv.appendChild(createButtonForSpeaking(finalCharacters[i]));
-            }
-            root.appendChild(finalCharactersDiv);
-        }
+			finalCharactersDiv.className = "finals";
+			for (var i = 0; i < finalCharacters.length; i++) {
+				finalCharactersDiv.appendChild(createButtonForSpeaking(finalCharacters[i]));
+			}
+			root.appendChild(finalCharactersDiv);
+		}
 
-        // Create heading for the whole Hebrew Alphabet Basic keyboard
-        // application.
-        function createAppHeading() {
-            var heading1 = createHeading("1", "Hebrew Alphabet Basic Keyboard");
-            return heading1;
-        }
+		// Create heading for the whole Hebrew Alphabet Basic keyboard
+		// application.
+		function createAppHeading() {
+			var heading1 = createHeading("1", "Hebrew Alphabet Basic Keyboard");
+			return heading1;
+		}
 
-        function createParagraph(someText) {
-            var paragraph = document.createElement("p");
-            paragraph.dir = "ltr";
-            var textElement = document.createTextNode(someText);
-            paragraph.appendChild(textElement);
-            return paragraph;
-        }
+		function createParagraph(someText) {
+			var paragraph = document.createElement("p");
+			paragraph.dir = "ltr";
+			var textElement = document.createTextNode(someText);
+			paragraph.appendChild(textElement);
+			return paragraph;
+		}
 
 		// For the place where one worked on a resume.
 		function createPlaceParagraph(someText) {
-            var paragraph = document.createElement("p");
-            paragraph.dir = "ltr";
+			var paragraph = document.createElement("p");
+			paragraph.dir = "ltr";
 			paragraph.className = "place";
-            var textElement = document.createTextNode(someText);
-            paragraph.appendChild(textElement);
-            return paragraph;
-        }
+			var textElement = document.createTextNode(someText);
+			paragraph.appendChild(textElement);
+			return paragraph;
+		}
 
 		// For the time period when one worked on a resume.
 		function createTimeParagraph(someText) {
-            var paragraph = document.createElement("p");
-            paragraph.dir = "ltr";
+			var paragraph = document.createElement("p");
+			paragraph.dir = "ltr";
 			paragraph.className = "time";
-            var textElement = document.createTextNode(someText);
-            paragraph.appendChild(textElement);
-            return paragraph;
-        }
+			var textElement = document.createTextNode(someText);
+			paragraph.appendChild(textElement);
+			return paragraph;
+		}
 
 
-        // Create a footer.
-        function createFooter() {
-            var footer = document.createElement("footer");
-            var link = document.createElement("a");
-            link.href = "https://www.jewishvirtuallibrary.org/the-hebrew-alphabet-aleph-bet";
-            var linkText = document.createTextNode("The Hebrew Alphabet (Aleph-Bet)");
-            link.appendChild(linkText);
-            footer.appendChild(link);
+		// Create a footer.
+		function createFooter() {
+			var footer = document.createElement("footer");
+			var link = document.createElement("a");
+			link.href = "https://www.jewishvirtuallibrary.org/the-hebrew-alphabet-aleph-bet";
+			var linkText = document.createTextNode("The Hebrew Alphabet (Aleph-Bet)");
+			link.appendChild(linkText);
+			footer.appendChild(link);
 
-            return footer;
-        }
+			return footer;
+		}
 
 
 
@@ -1129,17 +1129,17 @@
 			return resumeRoot;
 		}
 
-        root.appendChild(document.createComment("Start of HTML code generated by Javascript."));
+		root.appendChild(document.createComment("Start of HTML code generated by Javascript."));
 		attachAudioElements("root");
-        attachButtonsForSpeaking("root");
+		attachButtonsForSpeaking("root");
 		let resumeTargetPanel = document.createElement("div");
 		resumeTargetPanel.id = "resumeTargetPanel";
 		root.appendChild(resumeTargetPanel);
 		root.appendChild(createAboutTheComputerProgrammerButton());
 
 
-        root.appendChild(document.createComment("End of HTML code generated by Javascript."));
-    </script>
+		root.appendChild(document.createComment("End of HTML code generated by Javascript."));
+	</script>
 
 </body>
 <!-- Created by Elsanussi Mneina (m.). You can contact me (Elsanussi Mneina) at elsanussi.m@outlook.com, mentioning this page)
