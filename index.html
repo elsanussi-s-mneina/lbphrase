@@ -390,6 +390,24 @@
 			appState = reducerResult.appState;
 		}
 
+
+		function getInfoFromAudioId(targetAudioId)
+		{
+			let alphabetFiltered = alphabet.filter(x => x.audioId == targetAudioId);
+			if (alphabetFiltered.length > 0)
+			{
+				return alphabetFiltered[0];
+			}
+
+			let finalCharactersFiltered = finalCharacters.filter(x => x.audioId == targetAudioId);
+			if (finalCharactersFiltered.length > 0)
+			{
+				return finalCharactersFiltered[0];
+			}
+
+			return null;
+		}
+
 		function getTextFromAudioId(targetAudioId)
 		{
 			let alphabetFiltered = alphabet.filter(x => x.audioId == targetAudioId);
@@ -411,14 +429,11 @@
 			console.log("Asking question...");
 			
 			let audioIdToPlay = chooseRandomAudioIdOfLetter();
-			while (!audioIdHasAudioToPlay(audioIdToPlay)) {
-				console.log("Did not have enough audio to play" + audioIdToPlay);
-				audioIdToPlay = chooseRandomAudioIdOfLetterIncludingFinals();
-			}
 			appState.currentQuizPromptAudioId = audioIdToPlay;
 			appState.currentQuizPromptTargetText = getTextFromAudioId(audioIdToPlay);
-			var audioElement = document.getElementById(audioIdToPlay);
-			audioElement.play();
+
+			playSoundOfAudioId(audioIdToPlay);
+
 			console.log("Played audio of:", audioIdToPlay);
 			console.log("quiz Statistics:", appState.quizStatistics);
 			appState.quizStatistics[0].perLetter[audioIdToPlay].askCount++;
@@ -431,9 +446,9 @@
 		}
 		
 		function playSoundOfCurrentQuestion() {
-			var audioElement = document.getElementById(appState.currentQuizPromptAudioId);
-			audioElement.play();
-			console.log("Played audio of:", audioElement.id);
+			
+			playSoundOfAudioId(appState.currentQuizPromptAudioId);
+			console.log("Played audio of:", appState.currentQuizPromptAudioId);
 
 			let audioButtonToSpeak = document.getElementById("playSoundAgainButton");
 			audioButtonToSpeak.className = "highlighted playSoundAgainButton";
@@ -495,8 +510,7 @@
 					}
 
 				} else {
-					var audioElement = document.getElementById(audioIdToSpeak);
-					audioElement.play();
+					playSoundOfAudioId(audioIdToSpeak);
 
 					var buttonToSpeak = document.getElementById(sourceButtonId);
 					buttonToSpeak.className = "highlighted";
@@ -878,6 +892,9 @@
 			runUnitTests();
 	
 
+		// You most likely only want to create one audio element per page.
+		// If you make more than one the application will not work on
+		// Apple's web browser Safari.
 		function createAudioElement(id, mp3FilePath, oggFilePath) {
 			// Creating HTML similar to the following
 			// code from https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_audio_play
@@ -890,7 +907,7 @@
 
 
 			var audioElement = document.createElement("audio");
-			audioElement.id = id;
+			audioElement.id = "theAudioElement";
 
 			if (oggFilePath) {
 				var oggSourceElement = document.createElement("source");
@@ -911,16 +928,37 @@
 		}
 
 
+		function playSoundOfFile(filename) {
+			let audioElement = document.getElementById("theAudioElement");
+			audioElement.src = filename;
+			audioElement.play();
+		}
+
+		function getAudioFileNameFromAudioId(audioId) {
+			let audioInfo = getInfoFromAudioId(audioId);
+			if (audioInfo != null)
+			{
+				return audioInfo.mp3AudioFile;
+			}
+			else 
+			{
+				console.log("could not find audio at", audioId);
+				return "";
+			}
+			return audioInfo.mp3AudioFile;
+		}
+
+		function playSoundOfAudioId(audioId) {
+			let filename = getAudioFileNameFromAudioId(audioId);
+			playSoundOfFile(filename);
+		}
+
 		function attachAudioElements(idOfRootElement) {
+			// We only attach one audio element, because Safari does not make use of more than one.
 			var audioSectionDiv = document.createElement("div");
-			for (var i = 0; i < alphabet.length; i++) {
-				root.appendChild(createAudioElement(alphabet[i].audioId, alphabet[i].mp3AudioFile, alphabet[i].oggAudioFile))
+			if (alphabet.length > 0) {
+				audioSectionDiv.appendChild(createAudioElement(alphabet[0].audioId, alphabet[0].mp3AudioFile, alphabet[0].oggAudioFile))
 			}
-
-			for (var i = 0; i < finalCharacters.length; i++) {
-				root.appendChild(createAudioElement(finalCharacters[i].audioId, finalCharacters[i].mp3AudioFile, finalCharacters[i].oggAudioFile))
-			}
-
 			root.appendChild(audioSectionDiv);
 		}
 		
