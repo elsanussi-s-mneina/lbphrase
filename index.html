@@ -1096,13 +1096,23 @@
 			let employment1ListItem1 = document.createElement("li");
 			employment1ListItem1.appendChild(document.createTextNode("Create Web APIs for creating, reading, updating, and deleting records in a relational database"));
 			employment1List.appendChild(employment1ListItem1);
-			resumeRoot.appendChild(employment1List);			
+			employment1ListItem2 = document.createElement("li");
+			employment1ListItem2.appendChild(document.createTextNode("Set up unit tests for testing Web API logic using xUnit"));
+			employment1List.appendChild(employment1ListItem2);
+
+			resumeRoot.appendChild(employment1List);
+
 			let employment2 = createHeading(3, "Traffic Control Person");
 			resumeRoot.appendChild(employment2);
 			let employment2Subheading = createPlaceParagraph("Roads and Works Department, Town of Oakville (Ontario)");
 			resumeRoot.appendChild(employment2Subheading);
 			let employment2Subheading2 = createTimeParagraph("September" + "\u2014" + "October 2019");
 			resumeRoot.appendChild(employment2Subheading2);
+			let employment2List = document.createElement("ul");
+			employment2ListItem1 = document.createElement("li");
+			employment2ListItem1.appendChild(document.createTextNode("Coordinated traffic with team mate to allow construction work on roads to occur safely."));
+			employment2List.appendChild(employment2ListItem1);
+			resumeRoot.appendChild(employment2List);
 
 			let employment3 = createHeading(3, "Research Coordinator");
 			resumeRoot.appendChild(employment3);
