@@ -15,7 +15,6 @@
 			/* Align text to the center horizontally. */
 			text-align: center;
 			margin: 0 auto;
-			
 		}
 
 		.letterImage {
@@ -57,6 +56,12 @@
 		}
 
 		
+		/* To highlight a button as wrong,
+		 * the button will become red
+		 * while rotating left and right
+		 * in a motion similar to shaking
+		 * one's finger when saying no
+		 */
 		@keyframes highlightWrong {
 			0% {
 				background-color: #3f51b5;
@@ -171,22 +176,22 @@
 		}
 
 
-			/* Round the text area, where the line ends. In a right to left language
-			 this border rounding is at the top-left */
-			textarea {
-				font-size: 3em;
+		/* Round the text area, where the line ends. In a right to left language
+		 this border rounding is at the top-left */
+		textarea {
+			font-size: 3em;
 
-				/* Dear future programmer,
-				  Switch the values of border-top-left-radius
-				  and border-top-right-radius when modifying this
-				  code to write text for a language that flows in a different direction.
-				*/
-				border-top-left-radius: 1.0em;
-				border-top-right-radius: 0.0em;
+			/* Dear future programmer,
+			  Switch the values of border-top-left-radius
+			  and border-top-right-radius when modifying this
+			  code to write text for a language that flows in a different direction.
+			*/
+			border-top-left-radius: 1.0em;
+			border-top-right-radius: 0.0em;
 
-				top: 0px;
-				height: 33vh
-			}
+			top: 0px;
+			height: 33vh
+		}
 
 		h2 {
 			margin-top: 1.5em;
@@ -220,7 +225,7 @@
 			border-top-left-radius: 0.0em;
 			background-color: gray;
 			border-color: gray;
-			border-width: 0.32em;			
+			border-width: 0.32em;
 		}
 
 		.playSoundAgainButton {
@@ -258,7 +263,7 @@
 
 <body>
 	<div id="root"></div>
-
+	<!-- The tag with the ID equal to root will be where the application's buttons, and other user interface elemnts will appear. -->
 	<script>
 		let appState = { 
 			quizMode: false, // whether there is a quiz running.
