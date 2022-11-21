@@ -1068,6 +1068,21 @@
 		}
 
 
+		function createListItem(text) {
+			let listItem = document.createElement("li");
+			let textNode = document.createTextNode(text);
+			listItem.appendChild(textNode);
+			return listItem;
+		}
+
+		function createUnorderedListFromList(texts) {
+			let unorderedList = document.createElement("ul");
+			for (let i = 0; i < texts.length; i++) {
+				let listItem = createListItem(texts[i]);
+				unorderedList.appendChild(listItem);
+			}
+			return unorderedList;
+		}
 
 		// Create a resume for the software developer
 		// of this web application.
@@ -1092,14 +1107,8 @@
 			resumeRoot.appendChild(employment1Subheading);
 			let employment1Subheading2 = createTimeParagraph("May 2022" + "\u2014" + "Present");
 			resumeRoot.appendChild(employment1Subheading2);
-			let employment1List = document.createElement("ul");
-			let employment1ListItem1 = document.createElement("li");
-			employment1ListItem1.appendChild(document.createTextNode("Create Web APIs for creating, reading, updating, and deleting records in a relational database"));
-			employment1List.appendChild(employment1ListItem1);
-			employment1ListItem2 = document.createElement("li");
-			employment1ListItem2.appendChild(document.createTextNode("Set up unit tests for testing Web API logic using xUnit"));
-			employment1List.appendChild(employment1ListItem2);
-
+			let employment1List = createUnorderedListFromList(["Create Web APIs for creating, reading, updating, and deleting records in a relational database", "Set up unit tests for testing Web API logic using xUnit"]);
+			
 			resumeRoot.appendChild(employment1List);
 
 			let employment2 = createHeading(3, "Traffic Control Person");
