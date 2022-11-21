@@ -1140,6 +1140,15 @@
 			resumeRoot.appendChild(employment4Subheading);
 			let employment4Subheading2 = createTimeParagraph("May 2012" + "\u2014" + "October 2014");
 			resumeRoot.appendChild(employment4Subheading2);
+			let telecomTasks = [
+			"Rewrote .NET Framework project and improved throughput",
+			"Developed web application for managing TV channel listings using C#, NHibernate, ASP.NET, HTML, (also MXML) Javascript, and WCF.",
+			"Wrote database scripts to create and populate tables using SQL Server, and to get statistics on usage of newly launched features."
+			];
+			let telecomTasksElement = createUnorderedListFromList(telecomTasks);
+			resumeRoot.appendChild(telecomTasksElement);
+
+
 
 			let employment5 = createHeading(3, "Grader-Marker for Programming for Scientists and Engineers Course");
 			resumeRoot.appendChild(employment5);
@@ -1148,12 +1157,19 @@
 			let employment5Subheading2 = createTimeParagraph("September 2011" + "\u2014" + "January 2012");
 			resumeRoot.appendChild(employment5Subheading2);
 
+			let sciAndEngTasks = ["Marked programming assignments in Python"];
+			let sciAndEngTasksElement = createUnorderedListFromList(sciAndEngTasks);
+			resumeRoot.appendChild(sciAndEngTasksElement);
+
 			let employment6 = createHeading(3, "Grader-Marker for Data Structures and Algorithms Course");
 			resumeRoot.appendChild(employment6);
 			let employment6Subheading = createPlaceParagraph("Dr. Stephane Durocher, University of Manitoba");
 			resumeRoot.appendChild(employment6Subheading);
 			let employment6Subheading2 = createTimeParagraph("September" + "\u2014" + "December 2010");
 			resumeRoot.appendChild(employment6Subheading2);
+			let javaTasks = ["Graded programming assignments in Java"];
+			let javaTasksElement = createUnorderedListFromList(javaTasks);
+			resumeRoot.appendChild(javaTasksElement);
 
 			let employment7 = createHeading(3, "Language Consultant/Teaching Assistant");
 			resumeRoot.appendChild(employment7);
@@ -1161,6 +1177,11 @@
 			resumeRoot.appendChild(employment7Subheading);
 			let employment7Subheading2 = createTimeParagraph("Autumn 2009" + "\u2014" + "Winter 2010");
 			resumeRoot.appendChild(employment7Subheading2);
+			let languageTasks = ["Answered students' questions"];
+			let languageTasksElement = createUnorderedListFromList(languageTasks);
+			resumeRoot.appendChild(languageTasksElement);
+
+
 
 			let employment8 = createHeading(3, "Grader-Marker for Data Structures and Algorithms Course");
 			resumeRoot.appendChild(employment8);
@@ -1169,6 +1190,9 @@
 			resumeRoot.appendChild(employment8Subheading);
 			let employment8Subheading2 = createTimeParagraph("September" + "\u2014" + "December 2009");
 			resumeRoot.appendChild(employment8Subheading2);
+			let graderMarker1Tasks = ["‣ Marked approximately 250 assignment submissions written in Java"];
+			let graderMarker1TasksElement = createUnorderedListFromList(graderMarker1Tasks);
+			resumeRoot.appendChild(graderMarker1TasksElement);
 
 
 
