@@ -894,7 +894,7 @@
 		}
 
 
-			runUnitTests();
+		runUnitTests();
 	
 
 		// You most likely only want to create one audio element per page.
@@ -1117,10 +1117,7 @@
 			resumeRoot.appendChild(employment2Subheading);
 			let employment2Subheading2 = createTimeParagraph("September" + "\u2014" + "October 2019");
 			resumeRoot.appendChild(employment2Subheading2);
-			let employment2List = document.createElement("ul");
-			employment2ListItem1 = document.createElement("li");
-			employment2ListItem1.appendChild(document.createTextNode("Coordinated traffic with team mate to allow construction work on roads to occur safely."));
-			employment2List.appendChild(employment2ListItem1);
+			let employment2List = createUnorderedListFromList(["Coordinated traffic with team mate to allow construction work on roads to occur safely."]);
 			resumeRoot.appendChild(employment2List);
 
 			let employment3 = createHeading(3, "Research Coordinator");
@@ -1129,6 +1126,13 @@
 			resumeRoot.appendChild(employment3Subheading);
 			let employment3Subheading2 = createTimeParagraph("March 2018" + "\u2014" + "February 2019");
 			resumeRoot.appendChild(employment3Subheading2);
+
+			let rrcTasks =
+			["Developed software using Python for research purposes, and stored source code in Git server.",
+			"Presented at the High Performance Computing Conference in front of hundreds."
+			];
+			let rrcTasksElement = createUnorderedListFromList(rrcTasks);
+			resumeRoot.appendChild(rrcTasksElement);
 
 			let employment4 = createHeading(3, "Software Specialist 1");
 			resumeRoot.appendChild(employment4);
