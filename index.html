@@ -624,24 +624,6 @@
 			appState.showingCursive = !appState.showingCursive;
 		}
 
-		function createToggleShowCursiveCheckbox() {
-			let checkboxPanel = document.createElement("div");
-			checkboxPanel.dir = "ltr";
-			let checkbox = document.createElement("input");
-			checkbox.id = "toggleShowCursiveCheckbox";
-			checkbox.type = "checkbox";
-			checkbox.name = "toggleShowCursive";
-			checkbox.value = true;
-			let checkboxLabel = document.createElement("label");
-			checkboxLabel.htmlFor = checkbox.name;
-			checkboxLabel.appendChild(document.createTextNode("Show cursive forms of letters"));
-			checkbox.checked = appState.showingCursive;
-			checkbox.addEventListener("change", onToggleShowCursiveCheckbox);
-			checkboxPanel.appendChild(checkbox);
-			checkboxPanel.appendChild(checkboxLabel);
-			return checkboxPanel;
-		}
-
 		function hideAllVisibleLetterPrintedForms() {
 			let letterPrintedElements = document.getElementsByClassName("letterPrint");
 			for (let i = 0; i < letterPrintedElements.length; i++) {
@@ -656,23 +638,6 @@
 			}
 		}
 
-
-		function onToggleShowPrintedCheckbox(theEvent) {
-			// We must show something at least.
-			// Do not hide printed forms if there are no
-			// cursive forms to show
-			if (!appState.showingCursive) {
-				theEvent.preventDefault();
-				return;
-			}
-
-			if (appState.showingPrinted) {
-				hideAllVisibleLetterPrintedForms();
-			} else {
-				showAllLetterPrintedForms();
-			}
-			appState.showingPrinted = !appState.showingPrinted;
-		}
 
 		function onToggleLetterForms(theEvent) {
 			toggleLetterFormButton = document.getElementById("toggleLetterFormButton");
@@ -701,27 +666,6 @@
 			}
 
 			toggleLetterFormButton.innerText = toggleFormButtonInnerText();
-		}
-
-
-		function createToggleShowPrintedCheckbox() {
-			let checkboxPanel = document.createElement("div");
-			checkboxPanel.dir = "ltr";
-			let checkbox = document.createElement("input");
-			checkbox.id = "toggleShowPrintedCheckbox";
-			checkbox.type = "checkbox";
-			checkbox.name = "toggleShowPrinted";
-			checkbox.value = true;
-			let checkboxLabel = document.createElement("label");
-			checkboxLabel.htmlFor = checkbox.name;
-			checkboxLabel.appendChild(document.createTextNode("Show printed forms of letters"));
-			checkbox.checked = appState.showingPrinted;
-
-			checkbox.addEventListener("change", onToggleShowPrintedCheckbox);
-
-			checkboxPanel.appendChild(checkbox);
-			checkboxPanel.appendChild(checkboxLabel);
-			return checkboxPanel;
 		}
 
 		function toggleFormButtonInnerText() {
@@ -1053,20 +997,6 @@
 			paragraph.appendChild(textElement);
 			return paragraph;
 		}
-
-
-		// Create a footer.
-		function createFooter() {
-			var footer = document.createElement("footer");
-			var link = document.createElement("a");
-			link.href = "https://www.jewishvirtuallibrary.org/the-hebrew-alphabet-aleph-bet";
-			var linkText = document.createTextNode("The Hebrew Alphabet (Aleph-Bet)");
-			link.appendChild(linkText);
-			footer.appendChild(link);
-
-			return footer;
-		}
-
 
 		function createListItem(text) {
 			let listItem = document.createElement("li");
