@@ -356,6 +356,11 @@
 		// This is so that playback will not get interrupted if
 		// user clicks to play a new audio before an old one finished
 		let audioStopTimeout = null;
+		let buttonAnimationStopTimeoutId = null;
+
+		// prevent animation stuttering:
+		let previousButtonToSpeak = null;
+
 
 		function audioIdHasAudioToPlay(audioId) {
 			var audioElement = document.getElementById(audioId);
@@ -478,6 +483,16 @@
 				return fallbackValue;
 			}
 		}
+
+		function resetAnimationOfPreviousButton()
+		{
+			clearTimeout(buttonAnimationStopTimeoutId);
+			if (previousButtonToSpeak !== null && previousButtonToSpeak !== undefined && previousButtonToSpeak.className !== "")
+			{
+				previousButtonToSpeak.className = "";
+			}
+		}
+
 		// This function returns a function that speaks
 		// audio
 		function onClickButtonForSpeaking(audioIdToSpeak, sourceButtonId) {
@@ -506,30 +521,38 @@
 						}
 						appState.quizStatisticsRaw[0].perLetter.push({audioId: appState.currentQuizPromptAudioId, correct: true});
 						appState.quizStatistics[0].perLetter[appState.currentQuizPromptAudioId].correctResponseCount++;
-						
+
+						resetAnimationOfPreviousButton();
 						buttonToSpeak.className = "highlightedAsCorrect";
+						previousButtonToSpeak = buttonToSpeak;
+
 						dispatchAction({action: ASK_NEXT_QUESTION_AFTER_DELAY});
 						// Turn off highlight after animation completes:
-						setTimeout(function() {buttonToSpeak.className = "";}, 2400);
+						buttonAnimationStopTimeoutId = setTimeout(function() {buttonToSpeak.className = "";}, 2400);
 					} else {
 						console.log("Incorrect");
 						setMainMessage("Your choice was not correct!");
 						appState.incorrectCount += 1;
 						appState.quizStatisticsRaw[0].perLetter.push({audioId: appState.currentQuizPromptAudioId, correct: false, confusedWith: audioIdToSpeak});
 						appState.quizStatistics[0].perLetter[appState.currentQuizPromptAudioId].incorrectResponseCount++;
+						resetAnimationOfPreviousButton();
 						let buttonToSpeak = document.getElementById(sourceButtonId);
+						previousButtonToSpeak = buttonToSpeak;
 						buttonToSpeak.className = "highlightedAsWrong";
 						// Turn off highlight after animation completes:
-						setTimeout(function() {buttonToSpeak.className = "";}, 2400);
+						buttonAnimationStopTimeoutId = setTimeout(function() {buttonToSpeak.className = "";}, 2400);
 					}
 
 				} else {
 					playSoundOfAudioId(audioIdToSpeak);
 
+					resetAnimationOfPreviousButton();
 					var buttonToSpeak = document.getElementById(sourceButtonId);
+					previousButtonToSpeak = buttonToSpeak;
 					buttonToSpeak.className = "highlighted";
+					
 					// Turn off highlight after animation completes:
-					setTimeout(function() {buttonToSpeak.className = "";}, 2400);
+					buttonAnimationStopTimeoutId = setTimeout(function() {buttonToSpeak.className = "";}, 2400);
 				}
 
 			}
