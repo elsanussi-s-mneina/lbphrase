@@ -342,11 +342,20 @@
 			{ text: "\u05DF", buttonLabel: "\u05DF Nun Sofit", shortButtonLabel: "\u05DF", description: "nun sofit", oggAudioFile: "audio/05DF.ogg", mp3AudioFile: "audio/05DF.mp3", audioId: "nunSofitAudio", buttonId: "nunSofitButton", cursivePicture: "picture/cursive/nunsofit1.png"  },
 			{ text: "\u05E3", buttonLabel: "\u05E3 Feh Sofit", shortButtonLabel: "\u05E3", description: "feh sofit", oggAudioFile: "audio/05E3.ogg", mp3AudioFile: "audio/05E3.mp3", audioId: "fehSofitAudio", buttonId: "fehSofitButton", cursivePicture: "picture/cursive/pehsofit.png"  },
 			{ text: "\u05E5", buttonLabel: "\u05E5 Tsadeh Sofit", shortButtonLabel: "\u05E5", description: "tsadi sofit", oggAudioFile: "audio/05E5.ogg", mp3AudioFile: "audio/05E5.mp3", audioId: "tsadehSofitAudio", buttonId: "tsadehSofitButton", cursivePicture: "picture/cursive/tsadehsofit1.png"  },
+			{ text: "khair", buttonLabel: "khair", shortButtonLabel: "khair", description: "Libyan Arabic phrases", oggAudioFile: "audio/Libyan_Arabic_conversation_1.ogg", mp3AudioFile: "audio/Libyan_Arabic_conversation_1.mp3", startTimeInMilliseconds: 2000, audioLengthInMilliseconds: 1000, isClippedAudio: true, audioId: "khairLibyanArabic", buttonId: "khairLibyanArabicButton", cursivePicture: null},
+			{ text: "kayf 7aalak", buttonLabel: "kayf 7aalak", shortButtonLabel: "kayf 7aalak", description: "Libyan Arabic phrases", oggAudioFile: "audio/Libyan_Arabic_conversation_1.ogg", mp3AudioFile: "audio/Libyan_Arabic_conversation_1.mp3", startTimeInMilliseconds: 12000, audioLengthInMilliseconds: 3000, isClippedAudio: true, audioId: "kayfLibyanArabic", buttonId: "kayfLibyanArabicButton", cursivePicture: null},
+
 		];
 		
 
 		let futureSampleQuizStatisticsElement = {perLetter: [{audioId: "tavAudio", correctCount: 4, incorrectCount: 7, totalTimesAsked: 2, confusedWith: [{audioId: "lamedAudio", numberOfTimes: 2}]}]};
 		let sampleQuizStatisticsElement = {correctResponseCount: 0, askCount: 0};
+
+		// The variable audioStopTimeout allows us to clear any time outs
+		// that are running before playing new audio.
+		// This is so that playback will not get interrupted if
+		// user clicks to play a new audio before an old one finished
+		let audioStopTimeout = null;
 
 		function audioIdHasAudioToPlay(audioId) {
 			var audioElement = document.getElementById(audioId);
@@ -849,8 +858,19 @@
 
 		function playSoundOfFile(filename) {
 			let audioElement = document.getElementById("theAudioElement");
+			clearTimeout(audioStopTimeout);
 			audioElement.src = filename;
 			audioElement.play();
+		}
+
+		function playPartOfSoundOfFile(filename, currentTime, audioLengthInMilliseconds) {
+			let audioElement = document.getElementById("theAudioElement");
+			clearTimeout(audioStopTimeout);
+			audioElement.src = filename;
+			audioElement.currentTime = currentTime / 1000;
+			audioElement.load();
+			audioElement.play();
+			audioStopTimeout = setTimeout(function() { audioElement.pause()}, audioLengthInMilliseconds);
 		}
 
 		function getAudioFileNameFromAudioId(audioId) {
@@ -868,8 +888,17 @@
 		}
 
 		function playSoundOfAudioId(audioId) {
+			let audioInfo = getInfoFromAudioId(audioId);
 			let filename = getAudioFileNameFromAudioId(audioId);
-			playSoundOfFile(filename);
+			if (audioInfo.isClippedAudio == true, audioInfo.audioLengthInMilliseconds !== undefined)
+			{
+				
+				playPartOfSoundOfFile(filename, audioInfo.startTimeInMilliseconds, audioInfo.audioLengthInMilliseconds);
+			}
+			else
+			{
+				playSoundOfFile(filename);
+			}
 		}
 
 		function attachAudioElements(idOfRootElement) {
