@@ -563,7 +563,6 @@
 			clearTimeout(audioStopTimeout);
 			audioElement.src = filename;
 			audioElement.currentTime = currentTime / 1000;
-			audioElement.load();
 			audioElement.play();
 			audioStopTimeout = setTimeout(function() { audioElement.pause()}, audioLengthInMilliseconds);
 		});
@@ -895,7 +894,7 @@
 
 			var alphabetDiv = document.createElement("div");
 			alphabetDiv.className = "alphabet";
-			root.appendChild(createHeading(2, "Libyan Arabic Phrase book - Lesson 1: Play Audio of Letter Names"))
+			root.appendChild(createHeading(2, "Libyan Arabic Phrase book - Lesson 1: Play Audio of Letter Names (1)"))
 
 			root.appendChild(createParagraph(aboutThisApplication));
 
