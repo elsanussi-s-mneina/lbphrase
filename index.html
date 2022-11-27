@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width">
-	<title>Hebrew Alphabet Audio Speller</title>
+	<title>Libyan Arabic Phrase Book Lesson 1</title>
 	<style>
 		body {
 			font-family: Arial, Helvetica, sans-serif;
@@ -277,9 +277,9 @@
 			showingPrinted: true,
 		};
 		
-		var aboutThisApplication = "This is for causing the computer to speak out the names of the Hebrew letters. Make sure your sound is on. Information about the software developer is available at the following web address: https://www.github.com/elsanussi-s-mneina";
+		var aboutThisApplication = "This is for causing the computer to speak out Libyan Arabic phrases. Make sure your sound is on. Information about the software developer is available at the following web address: https://www.github.com/elsanussi-s-mneina";
 
-		// A variable that defines the Hebrew alphabet.
+		// A variable that defines the alphabet.
 		// Each character is defined as the 
 		// text that it will write in the text box,
 		// the buttonLabel which is the text that is written on the button
@@ -288,69 +288,16 @@
 		// Note to self we are missing the audio for vet, kaf, kaf sofit, peh and sin. We have the audio for bet, khaf, khaf sofit, feh, and shin.
 		// That is why there are some missing buttons.
 		var alphabet = [
-			{ text: "\u05D0", buttonLabel: "\u05D0 Alef", shortButtonLabel: "\u05D0", description: "Alef", oggAudioFile: "audio/05D0.ogg", mp3AudioFile: "audio/05D0.mp3", audioId: "alefAudio", buttonId: "alefButton",
-			cursivePicture: "picture/cursive/alef.png"
-		
-			},
-			{ text: "\u05D1\u05BC", buttonLabel: "\u05D1\u05BC Bet", shortButtonLabel: "\u05D1\u05BC",  description: "Bet", oggAudioFile: "audio/05D1.ogg", mp3AudioFile: "audio/05D1.mp3", audioId: "betAudio", buttonId: "betButton",
-			cursivePicture: "picture/cursive/bet_ns1.png"
-			},
-			{ text: "\u05D1", buttonLabel: "\u05D1 Vet", shortButtonLabel: "\u05D1",  description: "Vet", oggAudioFile: "audio/05D1_sp.ogg", mp3AudioFile: "audio/05D1_sp.mp3", audioId: "vetAudio", buttonId: "vetButton",
-			cursivePicture: "picture/cursive/bet2.png"		
-			 },
-			{ text: "\u05D2", buttonLabel: "\u05D2 Gimel", shortButtonLabel: "\u05D2",  description: "Gimel", oggAudioFile: "audio/05D2.ogg", mp3AudioFile: "audio/05D2.mp3", audioId: "gimelAudio", buttonId: "gimelButton",
-		cursivePicture: "picture/cursive/gimel1.png" },
-			{ text: "\u05D3", buttonLabel: "\u05D3 Dalet", shortButtonLabel: "\u05D3",  description: "Dalet", oggAudioFile: "audio/05D3.ogg", mp3AudioFile: "audio/05D3.mp3", audioId: "daletAudio", buttonId: "daletButton",
-			cursivePicture: "picture/cursive/dalet1.png"
-			},
-			{ text: "\u05D4", buttonLabel: "\u05D4 He", shortButtonLabel: "\u05D4", description: "Hey", oggAudioFile: "audio/05D4.ogg", mp3AudioFile: "audio/05D4.mp3", audioId: "heyAudio", buttonId: "heyButton",
-			cursivePicture: "picture/cursive/heh1.png"
-			},
-			{ text: "\u05D5", buttonLabel: "\u05D5 Vav", shortButtonLabel: "\u05D5", description: "vav", oggAudioFile: "audio/05D5.ogg", mp3AudioFile: "audio/05D5.mp3", audioId: "vavAudio", buttonId: "vavButton",
-			cursivePicture: "picture/cursive/vav1.png"
- 			},
-			{ text: "\u05D6", buttonLabel: "\u05D6 Zayin", shortButtonLabel: "\u05D6",  description: "zayen", oggAudioFile: "audio/05D6.ogg", mp3AudioFile: "audio/05D6.mp3", audioId: "zayenAudio", buttonId: "zayenButton", cursivePicture: "picture/cursive/zayin1.png"
- 			},
-			{ text: "\u05D7", buttonLabel: "\u05D7 Chet", shortButtonLabel: "\u05D7",  description: "khet", oggAudioFile: "audio/05D7.ogg", mp3AudioFile: "audio/05D7.mp3", audioId: "khetAudio", buttonId: "khetButton", cursivePicture: "picture/cursive/chet1.png" },
-			{ text: "\u05D8", buttonLabel: "\u05D8 Tet", shortButtonLabel: "\u05D8",  description: "tet", oggAudioFile: "audio/05D8.ogg", mp3AudioFile: "audio/05D8.mp3", audioId: "tetAudio", buttonId: "tetButton", cursivePicture: "picture/cursive/tet1.png" },
-			{ text: "\u05D9", buttonLabel: "\u05D9 Yod", shortButtonLabel: "\u05D9", description: "yod", oggAudioFile: "audio/05D9.ogg", mp3AudioFile: "audio/05D9.mp3", audioId: "yodAudio", buttonId: "yodButton", cursivePicture: "picture/cursive/yod1.png" },
-			{ text: "\u05DB\u05BC", buttonLabel: "\u05DB\u05BC Kaf", shortButtonLabel: "\u05DB\u05BC", description: "kaf", oggAudioFile: "audio/05DB_ns.ogg", mp3AudioFile: "audio/05DB_ns.mp3", audioId: "kafAudio", buttonId: "kafButton", cursivePicture: "picture/cursive/kaf_ns1.png" },
-
-			{ text: "\u05DB", buttonLabel: "\u05DB Khaf", shortButtonLabel: "\u05DB", description: "khaf", oggAudioFile: "audio/05DB.ogg", mp3AudioFile: "audio/05DB.mp3", audioId: "khafAudio", buttonId: "khafButton", cursivePicture: "picture/cursive/kaf1.png" },
-			{ text: "\u05DC", buttonLabel: "\u05DC Lamed", shortButtonLabel: "\u05DC", description: "lamed", oggAudioFile: "audio/05DC.ogg", mp3AudioFile: "audio/05DC.mp3", audioId: "lamedAudio", buttonId: "lamedButton", cursivePicture: "picture/cursive/lamed1.png" },
-			{ text: "\u05DE", buttonLabel: "\u05DE Mem", shortButtonLabel: "\u05DE", description: "mem", oggAudioFile: "audio/05DE.ogg", mp3AudioFile: "audio/05DE.mp3", audioId: "memAudio", buttonId: "memButton", cursivePicture: "picture/cursive/mem1.png" },
-			{ text: "\u05E0", buttonLabel: "\u05E0 Nun", shortButtonLabel: "\u05E0", description: "nun", oggAudioFile: "audio/05E0.ogg", mp3AudioFile: "audio/05E0.mp3", audioId: "nunAudio", buttonId: "nunButton", cursivePicture: "picture/cursive/nun1.png" },
-			{ text: "\u05E1", buttonLabel: "\u05E1 Samekh", shortButtonLabel: "\u05E1", description: "samekh", oggAudioFile: "audio/05E1.ogg", mp3AudioFile: "audio/05E1.mp3", audioId: "samekhAudio", buttonId: "samekhButton", cursivePicture: "picture/cursive/samekh1.png" }, 
-			// I chose to spell Samekh with "kh here" even though the website, I am basing
-			// it on is different.
-			
-			{ text: "\u05E2", buttonLabel: "\u05E2 Ayin", shortButtonLabel: "\u05E2", description: "ayin", oggAudioFile: "audio/05E2.ogg", mp3AudioFile: "audio/05E2.mp3", audioId: "ayinAudio", buttonId: "ayinButton", cursivePicture: "picture/cursive/ayin1.png" },
-			{ text: "\u05E4\u05BC", buttonLabel: "\u05E4\u05BC Peh", shortButtonLabel: "\u05E4\u05BC", description: "pey", oggAudioFile: "audio/05E4_ns.ogg", mp3AudioFile: "audio/05E4_ns.mp3", audioId: "pehAudio", buttonId: "pehButton", cursivePicture: "picture/cursive/peh_ns.png" },
-			{ text: "\u05E4", buttonLabel: "\u05E4 Feh", shortButtonLabel: "\u05E4", description: "fey", oggAudioFile: "audio/05E4.ogg", mp3AudioFile: "audio/05E4.mp3", audioId: "fehAudio", buttonId: "fehButton", cursivePicture: "picture/cursive/peh1.png" },
-			{ text: "\u05E6", buttonfLabel: "\u05E6 Tsadeh", shortButtonLabel: "\u05E6", description: "tsadi", oggAudioFile: "audio/05E6.ogg", mp3AudioFile: "audio/05E6.mp3", audioId: "tsadehAudio", buttonId: "tsadehButton", cursivePicture: "picture/cursive/tsadeh1.png" },
-			{ text: "\u05E7", buttonLabel: "\u05E7 Qof", shortButtonLabel: "\u05E7", description: "kuf", oggAudioFile: "audio/05E7.ogg", mp3AudioFile: "audio/05E7.mp3", audioId: "qofAudio", buttonId: "qofButton", cursivePicture: "picture/cursive/qof1.png" },
-			{ text: "\u05E8", buttonLabel: "\u05E8 Resh", shortButtonLabel: "\u05E8", description: "resh", oggAudioFile: "audio/05E8.ogg", mp3AudioFile: "audio/05E8.mp3", audioId: "reshAudio", buttonId: "reshButton", cursivePicture: "picture/cursive/resh1.png" },
-			{ text: "\u05E9\u05C1", buttonLabel: "\u05E9\u05C1 Shin", shortButtonLabel: "\u05E9\u05C1", description: "shin", oggAudioFile: "audio/05E9.ogg", mp3AudioFile: "audio/05E9.mp3", audioId: "shinAudio", buttonId: "shinButton", cursivePicture: "picture/cursive/shin1.png" },
-			{ text: "\u05E9\u05C1", buttonLabel: "\u05E9\u05C1 sin", shortButtonLabel: "\u05E9\u05C2", description: "sin", oggAudioFile: "audio/05E9_l.ogg", mp3AudioFile: "audio/05E9_l.mp3", audioId: "sinAudio", buttonId: "sinButton", cursivePicture: "picture/cursive/shin1.png" },
-
-			{ text: "\u05EA\u05BC", buttonLabel: "\u05EA Tav", shortButtonLabel: "\u05EA", description: "tav", oggAudioFile: "audio/05EA.ogg", mp3AudioFile: "audio/05EA.mp3", audioId: "tavAudio", buttonId: "tavButton", cursivePicture: "picture/cursive/tav1.png" },
-		];
-		
-		var finalCharacters = [
-			{ text: "\u05DA", buttonLabel: "\u05DA Khaf Sofit", shortButtonLabel: "\u05DA", description: "khaf sofit", oggAudioFile: "audio/05DA.ogg", mp3AudioFile: "audio/05DA.mp3", audioId: "khafSofitAudio", buttonId: "khafSofitButton", cursivePicture: "picture/cursive/kafsofit1.png"  },
-			{ text: "\u05DD", buttonLabel: "\u05DD Mem Sofit", shortButtonLabel: "\u05DD", description: "mem sofit", oggAudioFile: "audio/05DD.ogg", mp3AudioFile: "audio/05DD.mp3", audioId: "memSofitAudio", buttonId: "memSofitButton", cursivePicture: "picture/cursive/memsofit1.png"  },
-			{ text: "\u05DF", buttonLabel: "\u05DF Nun Sofit", shortButtonLabel: "\u05DF", description: "nun sofit", oggAudioFile: "audio/05DF.ogg", mp3AudioFile: "audio/05DF.mp3", audioId: "nunSofitAudio", buttonId: "nunSofitButton", cursivePicture: "picture/cursive/nunsofit1.png"  },
-			{ text: "\u05E3", buttonLabel: "\u05E3 Feh Sofit", shortButtonLabel: "\u05E3", description: "feh sofit", oggAudioFile: "audio/05E3.ogg", mp3AudioFile: "audio/05E3.mp3", audioId: "fehSofitAudio", buttonId: "fehSofitButton", cursivePicture: "picture/cursive/pehsofit.png"  },
-			{ text: "\u05E5", buttonLabel: "\u05E5 Tsadeh Sofit", shortButtonLabel: "\u05E5", description: "tsadi sofit", oggAudioFile: "audio/05E5.ogg", mp3AudioFile: "audio/05E5.mp3", audioId: "tsadehSofitAudio", buttonId: "tsadehSofitButton", cursivePicture: "picture/cursive/tsadehsofit1.png"  },
-			{ text: "khair", buttonLabel: "khair", shortButtonLabel: "khair", description: "Libyan Arabic phrases", oggAudioFile: "audio/Libyan_Arabic_conversation_1.ogg", mp3AudioFile: "audio/Libyan_Arabic_conversation_1.mp3", startTimeInMilliseconds: 2000, audioLengthInMilliseconds: 1000, isClippedAudio: true, audioId: "khairLibyanArabic", buttonId: "khairLibyanArabicButton", cursivePicture: null},
+		{ text: "khair", buttonLabel: "khair", shortButtonLabel: "khair", description: "Libyan Arabic phrases", oggAudioFile: "audio/Libyan_Arabic_conversation_1.ogg", mp3AudioFile: "audio/Libyan_Arabic_conversation_1.mp3", startTimeInMilliseconds: 2000, audioLengthInMilliseconds: 1000, isClippedAudio: true, audioId: "khairLibyanArabic", buttonId: "khairLibyanArabicButton", cursivePicture: null},
 			{ text: "kayf 7aalak", buttonLabel: "kayf 7aalak", shortButtonLabel: "kayf 7aalak", description: "Libyan Arabic phrases", oggAudioFile: "audio/Libyan_Arabic_conversation_1.ogg", mp3AudioFile: "audio/Libyan_Arabic_conversation_1.mp3", startTimeInMilliseconds: 12000, audioLengthInMilliseconds: 3000, isClippedAudio: true, audioId: "kayfLibyanArabic", buttonId: "kayfLibyanArabicButton", cursivePicture: null},
 			{ text: "kayf 7aalik", buttonLabel: "kayf 7aalik", shortButtonLabel: "kayf 7aalik", description: "Libyan Arabic phrases", oggAudioFile: "audio/Libyan_Arabic_conversation_1.ogg", mp3AudioFile: "audio/Libyan_Arabic_conversation_1.mp3", startTimeInMilliseconds: 28000, audioLengthInMilliseconds: 2000, isClippedAudio: true, audioId: "kayf2LibyanArabic", buttonId: "kayf2LibyanArabicButton", cursivePicture: null},
 			{ text: "kwayyis", buttonLabel: "kwayyis", shortButtonLabel: "kwayyis", description: "Libyan Arabic phrases", oggAudioFile: "audio/Libyan_Arabic_conversation_1.ogg", mp3AudioFile: "audio/Libyan_Arabic_conversation_1.mp3", startTimeInMilliseconds: 39500, audioLengthInMilliseconds: 2000, isClippedAudio: true, audioId: "kwayyisLibyanArabic", buttonId: "kwayyisLibyanArabicButton", cursivePicture: null},
 			{ text: "kwayysa", buttonLabel: "kwayysa", shortButtonLabel: "kwayysa", description: "Libyan Arabic phrases", oggAudioFile: "audio/Libyan_Arabic_conversation_1.ogg", mp3AudioFile: "audio/Libyan_Arabic_conversation_1.mp3", startTimeInMilliseconds: 50500, audioLengthInMilliseconds: 2000, isClippedAudio: true, audioId: "kwayysaLibyanArabic", buttonId: "kwayysaLibyanArabicButton", cursivePicture: null},
 			{ text: "shijjaw", buttonLabel: "shijjaw", shortButtonLabel: "shijjaw", description: "Libyan Arabic phrases", oggAudioFile: "audio/Libyan_Arabic_conversation_1.ogg", mp3AudioFile: "audio/Libyan_Arabic_conversation_1.mp3", startTimeInMilliseconds: 67500, audioLengthInMilliseconds: 2000, isClippedAudio: true, audioId: "shijjawLibyanArabic", buttonId: "shijjawLibyanArabicButton", cursivePicture: null},
 			{ text: "ma3assalama", buttonLabel: "ma3assalama", shortButtonLabel: "ma3assalama", description: "Libyan Arabic phrases", oggAudioFile: "audio/Libyan_Arabic_conversation_1.ogg", mp3AudioFile: "audio/Libyan_Arabic_conversation_1.mp3", startTimeInMilliseconds: 60000 + 23000 + 700, audioLengthInMilliseconds: 2000, isClippedAudio: true, audioId: "ma3assalamaLibyanArabic", buttonId: "ma3assalamaLibyanArabicButton", cursivePicture: null},
-		];
-		
+
+	];
+				
 
 		let futureSampleQuizStatisticsElement = {perLetter: [{audioId: "tavAudio", correctCount: 4, incorrectCount: 7, totalTimesAsked: 2, confusedWith: [{audioId: "lamedAudio", numberOfTimes: 2}]}]};
 		let sampleQuizStatisticsElement = {correctResponseCount: 0, askCount: 0};
@@ -422,12 +369,6 @@
 				return alphabetFiltered[0];
 			}
 
-			let finalCharactersFiltered = finalCharacters.filter(x => x.audioId == targetAudioId);
-			if (finalCharactersFiltered.length > 0)
-			{
-				return finalCharactersFiltered[0];
-			}
-
 			return null;
 		}
 
@@ -437,12 +378,6 @@
 			if (alphabetFiltered.length > 0)
 			{
 				return alphabetFiltered[0].shortButtonLabel;
-			}
-
-			let finalCharactersFiltered = finalCharacters.filter(x => x.audioId == targetAudioId);
-			if (finalCharactersFiltered.length > 0)
-			{
-				return finalCharactersFiltered[0].shortButtonLabel;
 			}
 
 			return null;
@@ -480,7 +415,7 @@
 		}
 
 		function getShortButtonLabelByAudioId(audioIdWanted, fallbackValue) {
-			let matches = alphabet.concat(finalCharacters).filter(x => x.audioId == audioIdWanted);
+			let matches = alphabet.filter(x => x.audioId == audioIdWanted);
 			if (matches.length > 0) {
 				return matches[0].shortButtonLabel;
 			} else {
@@ -575,16 +510,6 @@
 		function chooseRandomAudioIdOfLetter() {
 			let randomIndex = getRandomInt(0, alphabet.length);
 			return alphabet[randomIndex].audioId;
-		}
-
-		function chooseRandomAudioIdOfLetterIncludingFinals() {
-			let randomIndex = getRandomInt(0, alphabet.length + finalCharacters.length);
-			if (randomIndex < alphabet.length) {
-				return alphabet[randomIndex].audioId;
-			}
-			else {
-				return finalCharacters[randomIndex - alphabet.length].audioId;
-			}
 		}
 
 		function createButtonForSpeaking(letter) {
@@ -960,7 +885,7 @@
 
 			var alphabetDiv = document.createElement("div");
 			alphabetDiv.className = "alphabet";
-			root.appendChild(createHeading(2, "Hebrew Alphabet: Play Audio of Letter Names"))
+			root.appendChild(createHeading(2, "Libyan Arabic Phrase book - Lesson 1: Play Audio of Letter Names"))
 
 			root.appendChild(createParagraph(aboutThisApplication));
 
@@ -976,21 +901,12 @@
 				alphabetDiv.appendChild(createButtonForSpeaking(alphabet[i]));
 			}
 			root.appendChild(alphabetDiv);
-
-			var finalCharactersDiv = document.createElement("div");
-			root.appendChild(createHeading(2, "Final Characters"))
-
-			finalCharactersDiv.className = "finals";
-			for (var i = 0; i < finalCharacters.length; i++) {
-				finalCharactersDiv.appendChild(createButtonForSpeaking(finalCharacters[i]));
-			}
-			root.appendChild(finalCharactersDiv);
 		}
 
-		// Create heading for the whole Hebrew Alphabet Basic keyboard
+		// Create heading for the whole
 		// application.
 		function createAppHeading() {
-			var heading1 = createHeading("1", "Hebrew Alphabet Basic Keyboard");
+			var heading1 = createHeading("1", "Libyan Arabic Phrases");
 			return heading1;
 		}
 
@@ -1218,8 +1134,8 @@
 
 </body>
 <!-- Created by Elsanussi Mneina (m.). You can contact me (Elsanussi Mneina) at elsanussi.m@outlook.com, mentioning this page)
-  This single page web application for spelling Hebrew with audio was first released to the public on April 13, 2022 on GitHub under an MIT license.
-https://github.com/elsanussi-s-mneina/hebrew-alphabet-audio-speller-html-js
+  This single page web application for learning Libyan Arabic phrases with audio was first released to the public on November 27, 2022 on GitHub under an MIT license.
+https://github.com/elsanussi-s-mneina/lbphrase
 
 Here is the LICENSE for this web application:
 MIT License
