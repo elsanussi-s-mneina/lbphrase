@@ -559,17 +559,15 @@
 			aButton.ariaLabel = description;
 
 			aButton.addEventListener("click", function() {
-			let audioElement = document.getElementById("theAudioElement");
-			clearTimeout(audioStopTimeout);
-			audioElement.src = filename;
-			audioElement.currentTime = currentTime / 1000;
-			audioElement.play();
-			audioStopTimeout = setTimeout(function() { audioElement.pause()}, audioLengthInMilliseconds);
-		});
+				let audioElement = document.getElementById("theAudioElement");
+				clearTimeout(audioStopTimeout);
+				audioElement.src = filename;
+				audioElement.currentTime = currentTime / 1000;
+				audioElement.play();
+				audioStopTimeout = setTimeout(function() { audioElement.pause()}, audioLengthInMilliseconds);
+			});
 
-// commented out next line to see if audio playback will work on
-			// iOS using previous event listener.
-//			aButton.addEventListener("click", onClickButtonForSpeaking(audioId, buttonId));
+			aButton.addEventListener("click", onClickButtonForSpeaking(audioId, buttonId));
 			return aButton;
 		}
 
@@ -668,7 +666,6 @@
 		function onQuizModeChange() {
 			if (appState.quizMode === true) {
 				setMainMessage("Quiz started, listen for audio");
-				hideAllVisibleLetterImages();
 				appState.quizStatistics.push({perLetter: populateQuizStatisticsForStartOfQuiz()});
 				appState.quizStatisticsRaw.push({perLetter: []});
 				console.log("App State:");
@@ -676,7 +673,6 @@
 				askNextQuestion();
 				document.getElementById("toggleQuizButton").className = "quizToggleOn";
 			} else {
-				showAllLetterImages();
 				setMainMessage("You chose " + appState.correctCount + " time(s) correctly, and " + appState.incorrectCount + " time(s) incorrectly in the previous quiz.");	
 				document.getElementById("toggleQuizButton").className = "quizToggleOff";
 			}
