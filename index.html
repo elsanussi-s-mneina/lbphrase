@@ -519,7 +519,7 @@
 		}
 
 		function createButtonForSpeaking(letter) {
-			return createBilingualButtonForSpeaking(letter.text, letter.englishButtonLabel, letter.arabicButtonLabel, letter.description, letter.audioId, letter.buttonId, letter.cursivePicture);
+			return createBilingualButtonForSpeaking(letter.text, letter.englishButtonLabel, letter.arabicButtonLabel, letter.description, letter.audioId, letter.buttonId, letter.mp3AudioFile, letter.startTimeInMilliseconds, letter.audioLengthInMilliseconds);
 		}
 
 		function createLabelledButtonForSpeaking(textToWrite, buttonLabel, description, audioId, buttonId) {
@@ -532,7 +532,7 @@
 			return aButton;
 		}
 
-		function createBilingualButtonForSpeaking(textToWrite, englishButtonLabel, arabicButtonLabel, description, audioId, buttonId, imageSource) {
+		function createBilingualButtonForSpeaking(textToWrite, englishButtonLabel, arabicButtonLabel, description, audioId, buttonId, filename, currentTime, audioLengthInMilliseconds) {
 			var aButton = document.createElement("button");
 			aButton.id = buttonId;
 
@@ -557,7 +557,20 @@
 			
 			aButton.appendChild(buttonInnerContainer);
 			aButton.ariaLabel = description;
-			aButton.addEventListener("click", onClickButtonForSpeaking(audioId, buttonId));
+
+			aButton.addEventListener("click", function() {
+			let audioElement = document.getElementById("theAudioElement");
+			clearTimeout(audioStopTimeout);
+			audioElement.src = filename;
+			audioElement.currentTime = currentTime / 1000;
+			audioElement.load();
+			audioElement.play();
+			audioStopTimeout = setTimeout(function() { audioElement.pause()}, audioLengthInMilliseconds);
+		});
+
+// commented out next line to see if audio playback will work on
+			// iOS using previous event listener.
+//			aButton.addEventListener("click", onClickButtonForSpeaking(audioId, buttonId));
 			return aButton;
 		}
 
