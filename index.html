@@ -275,6 +275,7 @@
 			quizStatistics: [],
 			showingCursive: false,
 			showingPrinted: true,
+			displayMode: "English translation",
 		};
 		
 		var aboutThisApplication = "This is for causing the computer to speak out Libyan Arabic phrases. Make sure your sound is on. Information about the software developer is available at the following web address: https://www.github.com/elsanussi-s-mneina";
@@ -288,16 +289,21 @@
 		// Note to self we are missing the audio for vet, kaf, kaf sofit, peh and sin. We have the audio for bet, khaf, khaf sofit, feh, and shin.
 		// That is why there are some missing buttons.
 		var alphabet = [
-		{ text: "khair", buttonLabel: "khair", shortButtonLabel: "khair", description: "Libyan Arabic phrases", oggAudioFile: "audio/Libyan_Arabic_conversation_1.ogg", mp3AudioFile: "audio/Libyan_Arabic_conversation_1.mp3", startTimeInMilliseconds: 2000, audioLengthInMilliseconds: 1000, isClippedAudio: true, audioId: "khairLibyanArabic", buttonId: "khairLibyanArabicButton", cursivePicture: null},
-			{ text: "kayf 7aalak", buttonLabel: "kayf 7aalak", shortButtonLabel: "kayf 7aalak", description: "Libyan Arabic phrases", oggAudioFile: "audio/Libyan_Arabic_conversation_1.ogg", mp3AudioFile: "audio/Libyan_Arabic_conversation_1.mp3", startTimeInMilliseconds: 12000, audioLengthInMilliseconds: 3000, isClippedAudio: true, audioId: "kayfLibyanArabic", buttonId: "kayfLibyanArabicButton", cursivePicture: null},
-			{ text: "kayf 7aalik", buttonLabel: "kayf 7aalik", shortButtonLabel: "kayf 7aalik", description: "Libyan Arabic phrases", oggAudioFile: "audio/Libyan_Arabic_conversation_1.ogg", mp3AudioFile: "audio/Libyan_Arabic_conversation_1.mp3", startTimeInMilliseconds: 28000, audioLengthInMilliseconds: 2000, isClippedAudio: true, audioId: "kayf2LibyanArabic", buttonId: "kayf2LibyanArabicButton", cursivePicture: null},
-			{ text: "kwayyis", buttonLabel: "kwayyis", shortButtonLabel: "kwayyis", description: "Libyan Arabic phrases", oggAudioFile: "audio/Libyan_Arabic_conversation_1.ogg", mp3AudioFile: "audio/Libyan_Arabic_conversation_1.mp3", startTimeInMilliseconds: 39500, audioLengthInMilliseconds: 2000, isClippedAudio: true, audioId: "kwayyisLibyanArabic", buttonId: "kwayyisLibyanArabicButton", cursivePicture: null},
-			{ text: "kwayysa", buttonLabel: "kwayysa", shortButtonLabel: "kwayysa", description: "Libyan Arabic phrases", oggAudioFile: "audio/Libyan_Arabic_conversation_1.ogg", mp3AudioFile: "audio/Libyan_Arabic_conversation_1.mp3", startTimeInMilliseconds: 50500, audioLengthInMilliseconds: 2000, isClippedAudio: true, audioId: "kwayysaLibyanArabic", buttonId: "kwayysaLibyanArabicButton", cursivePicture: null},
-			{ text: "shijjaw", buttonLabel: "shijjaw", shortButtonLabel: "shijjaw", description: "Libyan Arabic phrases", oggAudioFile: "audio/Libyan_Arabic_conversation_1.ogg", mp3AudioFile: "audio/Libyan_Arabic_conversation_1.mp3", startTimeInMilliseconds: 67500, audioLengthInMilliseconds: 2000, isClippedAudio: true, audioId: "shijjawLibyanArabic", buttonId: "shijjawLibyanArabicButton", cursivePicture: null},
-			{ text: "ma3assalama", buttonLabel: "ma3assalama", shortButtonLabel: "ma3assalama", description: "Libyan Arabic phrases", oggAudioFile: "audio/Libyan_Arabic_conversation_1.ogg", mp3AudioFile: "audio/Libyan_Arabic_conversation_1.mp3", startTimeInMilliseconds: 60000 + 23000 + 700, audioLengthInMilliseconds: 2000, isClippedAudio: true, audioId: "ma3assalamaLibyanArabic", buttonId: "ma3assalamaLibyanArabicButton", cursivePicture: null},
-
-	];
-				
+		{ arabicButtonLabel: "\u062e\u064a\u0631", 
+		arabicTransliteratedButtonLabel: "khair", englishButtonLabel: "Hi", description: "Libyan Arabic phrases", oggAudioFile: "audio/Libyan_Arabic_conversation_1.ogg", mp3AudioFile: "audio/Libyan_Arabic_conversation_1.mp3", startTimeInMilliseconds: 2000, audioLengthInMilliseconds: 1000, isClippedAudio: true, audioId: "khairLibyanArabic", buttonId: "khairLibyanArabicButton", cursivePicture: null},
+			{ arabicButtonLabel: "\u0643\u064a\u0641\u0020\u062d\u0627\u0644\u064e\u0643\u061f", 
+			arabicTransliteratedButtonLabel: "kayf 7aalak", englishButtonLabel: "How are you (m.)?", shortButtonLabel: "kayf 7aalak", description: "Libyan Arabic phrases", oggAudioFile: "audio/Libyan_Arabic_conversation_1.ogg", mp3AudioFile: "audio/Libyan_Arabic_conversation_1.mp3", startTimeInMilliseconds: 12000, audioLengthInMilliseconds: 3000, isClippedAudio: true, audioId: "kayfLibyanArabic", buttonId: "kayfLibyanArabicButton", cursivePicture: null},
+			{ arabicButtonLabel: "\u0643\u064a\u0641\u0020\u062d\u0627\u0644\u0650\u0643\u061f", 
+			arabicTransliteratedButtonLabel: "kayf 7aalik", englishButtonLabel: "How are you (f.)?", shortButtonLabel: "kayf 7aalik", description: "Libyan Arabic phrases", oggAudioFile: "audio/Libyan_Arabic_conversation_1.ogg", mp3AudioFile: "audio/Libyan_Arabic_conversation_1.mp3", startTimeInMilliseconds: 28000, audioLengthInMilliseconds: 2000, isClippedAudio: true, audioId: "kayf2LibyanArabic", buttonId: "kayf2LibyanArabicButton", cursivePicture: null},
+			{ arabicButtonLabel: "\u0643\u0648\u064a\u0633", 
+			arabicTransliteratedButtonLabel: "kwayyis", englishButtonLabel: "Good (m.)", shortButtonLabel: "kwayyis", description: "Libyan Arabic phrases", oggAudioFile: "audio/Libyan_Arabic_conversation_1.ogg", mp3AudioFile: "audio/Libyan_Arabic_conversation_1.mp3", startTimeInMilliseconds: 39500, audioLengthInMilliseconds: 2000, isClippedAudio: true, audioId: "kwayyisLibyanArabic", buttonId: "kwayyisLibyanArabicButton", cursivePicture: null},
+			{ arabicButtonLabel: "\u0643\u0648\u064a\u0633\u0629", 
+			arabicTransliteratedButtonLabel: "kwayysa", englishButtonLabel: "Good (f.)", shortButtonLabel: "kwayysa", description: "Libyan Arabic phrases", oggAudioFile: "audio/Libyan_Arabic_conversation_1.ogg", mp3AudioFile: "audio/Libyan_Arabic_conversation_1.mp3", startTimeInMilliseconds: 50500, audioLengthInMilliseconds: 2000, isClippedAudio: true, audioId: "kwayysaLibyanArabic", buttonId: "kwayysaLibyanArabicButton", cursivePicture: null},
+			{ arabicButtonLabel: "\u0634\u0650\u0627\u0644\u062c\u0651\u0648\u061f", 
+			arabicTransliteratedButtonLabel: "shijjaw", englishButtonLabel: "What's up?", shortButtonLabel: "shijjaw", description: "Libyan Arabic phrases", oggAudioFile: "audio/Libyan_Arabic_conversation_1.ogg", mp3AudioFile: "audio/Libyan_Arabic_conversation_1.mp3", startTimeInMilliseconds: 67500, audioLengthInMilliseconds: 2000, isClippedAudio: true, audioId: "shijjawLibyanArabic", buttonId: "shijjawLibyanArabicButton", cursivePicture: null},
+			{ arabicButtonLabel: "\u0645\u0639\u0020\u0627\u0644\u0633\u0644\u0627\u0645\u0629",
+			arabicTransliteratedButtonLabel: "ma3assalama", englishButtonLabel: "Good bye.", shortButtonLabel: "ma3assalama", description: "Libyan Arabic phrases", oggAudioFile: "audio/Libyan_Arabic_conversation_1.ogg", mp3AudioFile: "audio/Libyan_Arabic_conversation_1.mp3", startTimeInMilliseconds: 60000 + 23000 + 700, audioLengthInMilliseconds: 2000, isClippedAudio: true, audioId: "ma3assalamaLibyanArabic", buttonId: "ma3assalamaLibyanArabicButton", cursivePicture: null},
+		];
 
 		let futureSampleQuizStatisticsElement = {perLetter: [{audioId: "tavAudio", correctCount: 4, incorrectCount: 7, totalTimesAsked: 2, confusedWith: [{audioId: "lamedAudio", numberOfTimes: 2}]}]};
 		let sampleQuizStatisticsElement = {correctResponseCount: 0, askCount: 0};
@@ -513,7 +519,7 @@
 		}
 
 		function createButtonForSpeaking(letter) {
-			return createImageButtonForSpeaking(letter.text, letter.shortButtonLabel, letter.description, letter.audioId, letter.buttonId, letter.cursivePicture);
+			return createBilingualButtonForSpeaking(letter.text, letter.englishButtonLabel, letter.arabicButtonLabel, letter.description, letter.audioId, letter.buttonId, letter.cursivePicture);
 		}
 
 		function createLabelledButtonForSpeaking(textToWrite, buttonLabel, description, audioId, buttonId) {
@@ -526,25 +532,28 @@
 			return aButton;
 		}
 
-		function createImageButtonForSpeaking(textToWrite, buttonLabel, description, audioId, buttonId, imageSource) {
+		function createBilingualButtonForSpeaking(textToWrite, englishButtonLabel, arabicButtonLabel, description, audioId, buttonId, imageSource) {
 			var aButton = document.createElement("button");
 			aButton.id = buttonId;
 
 			let printSpan = document.createElement("span");
-			printSpan.className = "letterPrint"
-			let textNode = document.createTextNode(buttonLabel);
+			printSpan.className = "englishTranslation"
+			printSpan.dir = "ltr";
+			let textNode = document.createTextNode(englishButtonLabel);
 			printSpan.appendChild(textNode);
-			let imageElement = document.createElement("img");
-			imageElement.src = imageSource;
-			imageElement.className = "letterImage";
-			if (!appState.showingCursive)
+			let arabicSpan = document.createElement("span");
+			arabicSpan.dir = "rtl";
+			let arabicTextNode = document.createTextNode(arabicButtonLabel);
+			arabicSpan.appendChild(arabicTextNode);
+			arabicSpan.className = "arabicScript";
+			if (appState.mode !== "Arabic script")
 			{
-				imageElement.setAttribute("style", "visibility: collapse; display: none");
+				arabicSpan.setAttribute("style", "visibility: collapse; display: none");
 			}
 
 			let buttonInnerContainer = document.createElement("div");
 			buttonInnerContainer.appendChild(printSpan);
-			buttonInnerContainer.appendChild(imageElement);
+			buttonInnerContainer.appendChild(arabicSpan);
 			
 			aButton.appendChild(buttonInnerContainer);
 			aButton.ariaLabel = description;
@@ -562,38 +571,29 @@
 			return result;
 		}
 
-		function hideAllVisibleLetterImages() {
-			let letterImageElements = document.getElementsByClassName("letterImage");
-			for (let i = 0; i < letterImageElements.length; i++) {
-				letterImageElements[i].setAttribute("style", "visibility: collapse; display: none;");
+		function hideAllVisibleArabicScriptText() {
+			let elements = document.getElementsByClassName("arabicScript");
+			for (let i = 0; i < elements.length; i++) {
+				elements[i].setAttribute("style", "visibility: collapse; display: none;");
 			}
 		}
 
-		function showAllLetterImages() {
-			let letterImageElements = document.getElementsByClassName("letterImage");
-			for (let i = 0; i < letterImageElements.length; i++) {
-				letterImageElements[i].setAttribute("style", "visibility: visible");
+		function showAllArabicScriptText() {
+			let elements = document.getElementsByClassName("arabicScript");
+			for (let i = 0; i < elements.length; i++) {
+				elements[i].setAttribute("style", "visibility: visible");
 			}
 		}
 
-		function onToggleShowCursiveCheckbox(theEvent) {
-			if (appState.showingCursive) {
-				hideAllVisibleLetterImages();
-			} else {
-				showAllLetterImages();
-			}
-			appState.showingCursive = !appState.showingCursive;
-		}
-
-		function hideAllVisibleLetterPrintedForms() {
-			let letterPrintedElements = document.getElementsByClassName("letterPrint");
+		function hideAllVisibleEnglishTranslations() {
+			let letterPrintedElements = document.getElementsByClassName("englishTranslation");
 			for (let i = 0; i < letterPrintedElements.length; i++) {
 				letterPrintedElements[i].setAttribute("style", "visibility: collapse; display: none;");
 			}
 		}
 
-		function showAllLetterPrintedForms() {
-			let letterPrintedElements = document.getElementsByClassName("letterPrint");
+		function showAllEnglishTranslations() {
+			let letterPrintedElements = document.getElementsByClassName("englishTranslation");
 			for (let i = 0; i < letterPrintedElements.length; i++) {
 				letterPrintedElements[i].setAttribute("style", "visibility: visible");
 			}
@@ -603,27 +603,23 @@
 		function onToggleLetterForms(theEvent) {
 			toggleLetterFormButton = document.getElementById("toggleLetterFormButton");
 			
-			if (appState.showingPrinted && !appState.showingCursive) {
-				appState.showingCursive = true;
-				appState.showingPrinted = false;
-			} else if (!appState.showingPrinted && appState.showingCursive) {
-				appState.showingCursive = true;
-				appState.showingPrinted = true;
-			} else {
-				appState.showingCursive = false;
-				appState.showingPrinted = true;
-			}	
-
-			if (appState.showingPrinted) {
-				showAllLetterPrintedForms();
-			} else {
-				hideAllVisibleLetterPrintedForms();
+			if (appState.displayMode == "English translation") {
+				appState.displayMode = "Arabic script";
+			}
+			else if (appState.displayMode == "Arabic script") {
+				appState.displayMode = "English translation";
 			}
 
-			if (appState.showingCursive) {
-				showAllLetterImages();
+			if (appState.displayMode == "English translation") {
+				showAllEnglishTranslations();
 			} else {
-				hideAllVisibleLetterImages();
+				hideAllVisibleEnglishTranslations();
+			}
+
+			if (appState.displayMode == "Arabic script") {
+				showAllArabicScriptText();
+			} else {
+				hideAllVisibleArabicScriptText();
 			}
 
 			toggleLetterFormButton.innerText = toggleFormButtonInnerText();
@@ -631,13 +627,13 @@
 
 		function toggleFormButtonInnerText() {
 			let buttonText = "";
-			if (appState.showingPrinted && !appState.showingCursive) {
-				buttonText = "Showing Printed Forms";
-			} else if (!appState.showingPrinted && appState.showingCursive) {
-				buttonText = "Showing Cursive Forms";
-			} else {
-				buttonText = "Showing Cursive and Printed Forms";
-			}	
+			if (appState.displayMode == "English translation") {
+				buttonText = "Showing English translation";
+			} else if (appState.displayMode == "Arabic script") {
+				buttonText = "Showing Arabic script";
+			} else if (appState.displayMode == "English translation and Arabic script") {
+				buttonText = "Showing English translation and Arabic script";
+			}
 			return buttonText;
 		}
 
